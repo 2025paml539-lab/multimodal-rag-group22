@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Secrets
+.env
+*.key
+
+# Large or regenerable data (the corpus inventory is committed, the raw files are not)
+data/raw/
+data/cache/
+data/index/
+models/
+*.gguf
+*.safetensors
+*.bin
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
