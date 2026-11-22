@@ -72,19 +72,25 @@ Folders other than `docs/` and `scripts/` are created as the work is done.
 
 Lab software that works with the lab's driver 535: PyTorch 2.8.0+cu128, Ollama 0.12.6. Do not upgrade either.
 
-## Status (21 Nov 2026)
+## Status (22 Nov 2026) and owners
 
-- [x] Instructor approval of corpus and scenario
-- [x] Lab notebook created, GPU verified (A100, PyTorch, Ollama at 121 tokens/s with qwen3:8b)
-- [x] Repository, project plan and lab guide
-- [x] Core code skeleton (`src/rag/`): elements, chunking, hybrid retrieval, memory, LLM client. 33 offline tests pass
-- [ ] Parsers checked on real PDFs and PPTs (written, not yet tested: lab session S2)
-- [ ] Corpus collected (100+ documents) and inventory
-- [ ] Embeddings with a real model and the vector index on the lab GPU
-- [ ] Guardrails
-- [ ] Golden set, evaluation, prompt ablation, self-improving loop
-- [ ] Non-functional benchmark
-- [ ] Report, demo, contribution statement
+Details and due dates per person are in [`PROJECT_PLAN.md`](PROJECT_PLAN.md) section 0.
+
+- [x] Instructor approval of corpus and scenario (Kishore)
+- [x] Lab notebook created, GPU verified: A100, PyTorch, Ollama at 121 tokens/s with qwen3:8b (Kishore)
+- [x] Repository, project plan and lab guide (Kishore)
+- [x] Core code skeleton `src/rag/`: elements, chunking, hybrid retrieval, memory, LLM client. 33 offline tests pass (Kishore)
+- [ ] PDF/PPT parsers checked on real documents: written, not yet tested, lab session S2 on Mon 23 (Kishore)
+- [ ] Corpus of 100+ public documents, `corpus/manifest.csv`, inventory, hashes (Vishruth)
+- [ ] Metadata ontology `ontology.yaml` (Vishruth)
+- [ ] Real embeddings and the vector index on the lab GPU, E1 and E2 (Kishore)
+- [ ] Retrieval experiments E3 and memory demo E4 (Kishore)
+- [ ] Guardrails and DoS limiter, E9 (Bhavani)
+- [ ] Golden set of 30+ questions with dev/test split, 8 from each member (Satya, everyone)
+- [ ] Evaluation, automatic evaluation, prompt ablation, self-improving loop: E5, E7, E8 (Satya)
+- [ ] Non-functional benchmark E6 (Bhavani)
+- [ ] HLD and LLD diagrams, constraint map (Bhavani)
+- [ ] Report, demo video, contribution statement (Bhavani assembles, everyone reviews)
 
 ## Rules we follow
 
