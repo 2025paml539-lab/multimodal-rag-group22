@@ -6,6 +6,37 @@ Instructor approval of the corpus and scenario: **received** (Prof. Dhruba Adhik
 
 ---
 
+## 0. Status and next actions (updated Sunday 22 November, evening)
+
+### Done
+
+| Item | Who | Where to see it |
+|---|---|---|
+| Instructor approval of corpus and scenario | Kishore | email of 21 Nov, 9:56 PM; Q/A forum post |
+| Lab notebook: A100 GPU, PyTorch 2.8.0+cu128, Ollama 0.12.6 on the GPU (121 tokens/s with qwen3:8b), repos cloned in the lab | Kishore | `docs/LAB_SETUP.md` |
+| Repository, project plan, lab guide, `scripts/lab_start.sh` (script not yet run) | Kishore | this repo |
+| Core code skeleton, `src/rag/`: elements, chunking, PDF/PPT parsers, BM25 + dense + fusion retrieval, memory, LLM client. 33 offline tests pass | Kishore | `src/rag/`, `tests/` |
+| Plan emailed to the team | Kishore | sent 21 Nov |
+
+Nothing from Vishruth, Satya or Bhavani is in the repository yet, and nobody has confirmed a role.
+Not yet run on real files: the PDF and PPT parsers, the embedding model, the lab start script, the model pulls for gpt-oss and DeepSeek.
+
+### Next actions, by person
+
+| Who | Next (due) | After that |
+|---|---|---|
+| **Kishore** | Read `src/rag/index.py` before the lab. Book session S2. In S2 (Mon 23): `git pull`, `lab_start.sh` with the three models, virtual environment from `requirements-lab.txt`, run the parsers on 3 to 5 real documents | S3 (Tue 24): ingest the whole corpus, real embeddings, two chunking configurations (E1, E2) |
+| **Vishruth** | Source list of 100+ public documents (title, URL, type) as `corpus/manifest.csv` (Mon 23). Download and dedupe by SHA-256 (Tue 24) | Inventory counts: documents, pages, tables, images. `ontology.yaml`. Model-serving config and token counts |
+| **Satya** | Golden-set file format and metric code (Recall@k, MRR, correctness, faithfulness) (Mon 23). Prompt templates v0, the five variants (Mon 23) | Golden set frozen with a dev/test split (Wed 25). Ablation, automatic evaluation, self-improving loop |
+| **Bhavani** | Guardrail skeleton: input checks (injection, out-of-scope, personal data) and output checks (grounded, cited, refusal), DoS limiter, test harness (Mon 23). Streamlit skeleton | HLD diagram and constraint map (Tue 24). Non-functional benchmark (E6), report assembly |
+| **Everyone** | Reply to confirm your role. Check how many lab sessions your account has and book one for Mon 23 to Wed 25. Send Kishore your GitHub username and the email on it. Write your 8 golden questions from the real documents once the corpus is downloaded (Tue 24) | Your own lesson learned; take part in the demo |
+| **Part B (each member separately)** | Choose your own use case from your own work. Keep your repo private. Do not share golden sets | Registry, schemas, golden set, three-model run |
+
+Working rule: branch per person, merge into `main` through a pull request, offline tests pass before every push
+(`python -m unittest discover -s tests -t .`).
+
+---
+
 ## 1. The most important fact: this project runs in the lab
 
 > **The real work can only be done in the BITS lab (Kubeflow notebook with an NVIDIA A100 80 GB).
