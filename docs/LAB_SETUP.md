@@ -138,7 +138,8 @@ source ~/venv_rag/bin/activate
 pip install -r ~/multimodal-rag-group22/requirements-lab.txt
 ```
 
-`requirements-lab.txt` is written and checked in session S2 (Mon 23 Nov). Do not run this step before it exists.
+`requirements-lab.txt` is written but **not yet tested**: its first install is session S2. If a line fails, note which one and
+tell Kishore. Never add or upgrade `torch` there.
 
 ## Start of every session
 

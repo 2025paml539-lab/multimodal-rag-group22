@@ -39,6 +39,13 @@ under 6 s; the same answer on 5+ repeated runs; fewer tokens than a naive "send 
 | [`docs/LAB_SETUP.md`](docs/LAB_SETUP.md) | Step-by-step lab setup for every member, with the errors we already met |
 | `scripts/lab_start.sh` | Start-of-session script (starts Ollama on the GPU, pulls models). Not yet tested |
 
+## Run the offline tests (any laptop, no GPU)
+
+```bash
+pip install numpy
+python -m unittest discover -s tests -t .
+```
+
 ## Repository layout (planned)
 
 ```
@@ -70,9 +77,11 @@ Lab software that works with the lab's driver 535: PyTorch 2.8.0+cu128, Ollama 0
 - [x] Instructor approval of corpus and scenario
 - [x] Lab notebook created, GPU verified (A100, PyTorch, Ollama at 121 tokens/s with qwen3:8b)
 - [x] Repository, project plan and lab guide
+- [x] Core code skeleton (`src/rag/`): elements, chunking, hybrid retrieval, memory, LLM client. 33 offline tests pass
+- [ ] Parsers checked on real PDFs and PPTs (written, not yet tested: lab session S2)
 - [ ] Corpus collected (100+ documents) and inventory
-- [ ] Ingestion, embeddings and vector index
-- [ ] Retrieval, memory, guardrails
+- [ ] Embeddings with a real model and the vector index on the lab GPU
+- [ ] Guardrails
 - [ ] Golden set, evaluation, prompt ablation, self-improving loop
 - [ ] Non-functional benchmark
 - [ ] Report, demo, contribution statement
