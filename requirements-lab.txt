@@ -1,0 +1,27 @@
+# Extra packages for the BITS lab (Python 3.11, PyTorch 2.8.0+cu128 already installed).
+# NOT YET TESTED: first install is lab session S2. If one line fails, tell Kishore which one; do not upgrade torch.
+#
+# Install into a virtual environment that reuses the installed PyTorch:
+#   python -m venv --system-site-packages ~/venv_rag
+#   source ~/venv_rag/bin/activate
+#   pip install -r requirements-lab.txt
+#
+# Do NOT add torch here. The lab's GPU driver needs the cu128 build installed in LAB_SETUP.md step 4.
+
+# parsing (A1)
+pymupdf
+python-pptx
+
+# embeddings (A1, E2)
+sentence-transformers
+
+# OCR for text inside images (A1): small, CPU, no system packages needed. Alternatives if it fails: easyocr, pytesseract
+rapidocr-onnxruntime
+
+# prompts, ontology, evaluation (A5, A4)
+jinja2
+pyyaml
+scikit-learn
+
+# demo app (Bhavani). Whether it can be opened from the lab is not yet verified.
+streamlit
