@@ -22,6 +22,31 @@ def _missing(pkg: str, install: str) -> RuntimeError:
     return RuntimeError(f"{pkg} is not installed. In the lab run: pip install {install} (see docs/LAB_SETUP.md)")
 
 
+def _table_rows(page, table) -> List[List[str]]:
+    """Cell text read from each cell's box on the page.
+
+    table.extract() dropped spaces ("Home loan" -> "Homeloan") and split the decimal
+    point onto its own line ("8.6" -> "86\\n."), seen in lab session S2. Reading the
+    page text inside each cell box keeps both. Falls back to extract() if the table
+    has no cell boxes.
+    """
+    try:
+        rows = []
+        for row in table.rows:
+            cells = []
+            for box in row.cells:
+                if box is None:
+                    cells.append("")
+                else:
+                    cells.append(" ".join(page.get_textbox(box).split()))
+            rows.append(cells)
+        if rows:
+            return rows
+    except Exception:
+        pass
+    return table.extract()
+
+
 def parse_pdf(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = None,
               min_image_px: int = 80, metadata: Optional[dict] = None) -> List[Element]:
     """One Element per text block group, per table, and per image on each page."""
@@ -41,7 +66,7 @@ def parse_pdf(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = Non
                 elements.append(Element(doc_id, page_no, Modality.TEXT, text, metadata=dict(meta)))
 
             for table in page.find_tables().tables:
-                rows = table.extract()
+                rows = _table_rows(page, table)
                 body = "\n".join(" | ".join((c or "").strip() for c in row) for row in rows if row)
                 if body.strip():
                     elements.append(Element(doc_id, page_no, Modality.TABLE, body, metadata=dict(meta)))
