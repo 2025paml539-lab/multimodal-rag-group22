@@ -1,0 +1,48 @@
+1. PARSE
+  assistant_overview: {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+  fraud_report: {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+  kyc_guidelines: {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+  loan_policy: {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+2. CHUNK (two configurations, like experiment E2)
+  config A (200 words, overlap 40): 16 chunks, 532 words
+  config B (60 words, overlap 10): 24 chunks, 587 words
+3. EMBED + INDEX
+Loading weights:   0%|                                                                                                                                        | 0/103 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 103/103 [00:00<00:00, 5442.62it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  model sentence-transformers/all-MiniLM-L6-v2 on cuda
+  16 chunks indexed in 7.1s
+4. SEARCH (bm25 / dense / hybrid)
+  [text] What is the minimum credit score for unsecured personal loans?
+    bm25   loan_policy, p.2 text | loan_policy, p.1 text | assistant_overview, p.1 text
+    dense  loan_policy, p.1 text | loan_policy, p.2 text | loan_policy, p.1 table
+    hybrid loan_policy, p.1 text | loan_policy, p.2 text | fraud_report, p.1 text
+  [table] What is the maximum amount for a home loan?
+    bm25   loan_policy, p.1 text | loan_policy, p.2 text | kyc_guidelines, p.2 text
+    dense  loan_policy, p.1 table | loan_policy, p.1 text | loan_policy, p.2 text
+    hybrid loan_policy, p.1 text | loan_policy, p.2 text | loan_policy, p.2 image
+  [image] How many fraud cases were reported in the third quarter?
+    bm25   fraud_report, p.2 image | fraud_report, p.2 text | fraud_report, p.1 text
+    dense  fraud_report, p.2 image | fraud_report, p.2 text | fraud_report, p.1 text
+    hybrid fraud_report, p.2 image | fraud_report, p.2 text | fraud_report, p.1 text
+  [table] Which payment channel lost the most money to fraud?
+    bm25   fraud_report, p.1 text | assistant_overview, p.1 text | fraud_report, p.2 text
+    dense  fraud_report, p.1 text | fraud_report, p.2 text | fraud_report, p.2 image
+    hybrid fraud_report, p.1 text | fraud_report, p.2 text | assistant_overview, p.1 text
+5. ANSWER with ollama (qwen3:8b)
+  Q[text]: What is the minimum credit score for unsecured personal loans?
+  A: The minimum credit score for unsecured personal loans is 700 [loan_policy, p.1].
+     tokens in/out 497/23, 8.4s, cites a retrieved source: True
+  Q[table]: What is the maximum amount for a home loan?
+  A: The maximum amount for a home loan is 50000000 INR [loan_policy, p.1].
+     tokens in/out 459/28, 0.5s, cites a retrieved source: True
+  Q[image]: How many fraud cases were reported in the third quarter?
+  A: The context provided does not specify the number of fraud cases reported in the third quarter. Therefore, the answer is: Not found in the documents.
+     tokens in/out 366/30, 0.5s, cites a retrieved source: False
+  Q[table]: Which payment channel lost the most money to fraud?
+  A: The payment channel that lost the most money to fraud is UPI, with a total amount lost of 310 lakh INR [fraud_report, p.1].
+     tokens in/out 341/37, 0.5s, cites a retrieved source: True
+6. MEMORY follow-up (experiment E4 idea)
+  follow-up : And what about the vehicle loan?
+  rewritten : What is the information about the vehicle loan?
+  top hits  : loan_policy, p.1 text | loan_policy, p.2 text | loan_policy, p.2 image
+Done in 117.6s

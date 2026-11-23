@@ -1,0 +1,8 @@
+assistant_overview.pptx -> {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+   OCR text: Queries answered per wee k 61 52 45 30 Q1 Q2 Q3 Q4
+fraud_report.pdf -> {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+   OCR text: Fraud cases per quarter 1250 1100 980 900 Q1 Q2 Q3 Q4
+kyc_guidelines.pdf -> {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+   OCR text: KYC completed (thousand) 71 62 55 40 Q1 Q2 Q3 Q4
+loan_policy.pdf -> {'TEXT': 2, 'TABLE': 1, 'IMAGE': 1}
+   OCR text: Loan disbursed (INR crore) 180 150 135 120 Q1 Q2 Q3 Q4

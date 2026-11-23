@@ -109,13 +109,22 @@ Expected: `library=CUDA`, an answer in about one second, `eval rate` above 100 t
 If it says `library=cpu`, you installed a newer Ollama by mistake.
 
 Models for Part B (one family each; they are stored in `/tmp`, so they are downloaded again after a restart).
-Only `qwen3:8b` has been pulled and run so far. The other two pulls are **(not yet tested)**; first use is session S2:
+Session S2 (23 Nov): `qwen3:8b` and `deepseek-r1:14b` pulled successfully (5.2 GB and 9.0 GB). **`gpt-oss:20b` could not be pulled** (see the next section).
 
 ```bash
 ~/ollama012/bin/ollama pull qwen3:8b          # Qwen (tested)
-~/ollama012/bin/ollama pull gpt-oss:20b       # OpenAI gpt-oss-20b (not yet tested)
-~/ollama012/bin/ollama pull deepseek-r1:14b   # DeepSeek-R1-Distill-Qwen-14B (not yet tested)
+# ~/ollama012/bin/ollama pull gpt-oss:20b   # FAILS on Ollama 0.12.6, see "gpt-oss-20b" below
+~/ollama012/bin/ollama pull deepseek-r1:14b   # DeepSeek-R1-Distill-Qwen-14B (pulled OK in S2)
 ```
+
+### gpt-oss-20b (found in S2)
+
+`ollama pull gpt-oss:20b` with Ollama 0.12.6 fails with `pull model manifest: 412: The model you are attempting to pull requires a newer version of Ollama`.
+The registry now asks for a newer client, and newer Ollama builds are the ones that reject the lab driver (535, CUDA 12.2).
+The assignment requires one model from each family (Qwen, DeepSeek, gpt-oss-20b), so do not replace it with another family.
+Allowed by the assignment (Part B rule 15): a hosted open-weight endpoint (for example Groq, Together, OpenRouter, Fireworks or Hugging Face Inference).
+Record the provider, quantisation and hardware in the report. Keep the API key in an environment variable, never in code, a notebook or the repository.
+Ask the instructor to confirm before relying on it. A newer Ollama on this driver was **not tested**.
 
 ## Step 6. Get the code
 
@@ -128,18 +137,28 @@ Update later with `cd ~/multimodal-rag-group22 && git pull`. The repository is p
 Pushing from the lab needs a GitHub token (create it on GitHub, never paste it into a file or a chat). Until you set one up,
 download results with the JupyterLab file browser (right-click, Download).
 
-## Step 7. Project packages (not yet tested)
+## Step 7. Project packages
 
-Planned: a virtual environment in your home folder that reuses the installed PyTorch, so a restart cannot remove it.
+A virtual environment in your home folder, so a restart cannot remove it.
+
+**Install PyTorch into the venv first.** In S2 the venv could not see the PyTorch from step 4, so `pip install -r requirements-lab.txt` downloaded
+`torch 2.15.0` built for CUDA 13 plus about 3 GB of CUDA 13 libraries. That build cannot use this lab GPU (driver 535, CUDA 12.2).
 
 ```bash
 python -m venv --system-site-packages ~/venv_rag
 source ~/venv_rag/bin/activate
+pip install "torch==2.8.0" --index-url https://download.pytorch.org/whl/cu128
 pip install -r ~/multimodal-rag-group22/requirements-lab.txt
+python -c "import torch; print(torch.__version__, torch.cuda.is_available(), torch.cuda.get_device_name(0))"
 ```
 
-`requirements-lab.txt` is written but **not yet tested**: its first install is session S2. If a line fails, note which one and
-tell Kishore. Never add or upgrade `torch` there.
+Expected last line: `2.8.0+cu128 True NVIDIA A100-SXM4-80GB`. If it shows `2.15.0`, run:
+`pip uninstall -y torch triton` and the `nvidia-*` and `cuda-*` packages that were installed, then repeat the torch line above.
+Pip prints dependency "conflicts" for `kfp`, `mlflow-skinny` and `httpcore`. They belong to other lab tools and can be ignored.
+Confirmed in S2: `2.8.0+cu128 True NVIDIA A100-SXM4-80GB`. The venv is about 7 GB.
+
+`requirements-lab.txt` installed without errors in S2 (23 Nov). PyMuPDF, python-pptx and RapidOCR were then used on 4 sample files
+(3 PDFs, 1 PPTX): text, table, image and OCR elements were all produced. Never add or upgrade `torch` there.
 
 ## Start of every session
 
@@ -149,7 +168,7 @@ bash scripts/lab_start.sh qwen3:8b            # add more model names to pull the
 ```
 
 `scripts/lab_start.sh` starts Ollama on the GPU, pulls the models you name, and prints the GPU state.
-It was written to match steps 5 and 6 and is **not yet tested**: its first use is session S2.
+It was used in S2 (23 Nov): Ollama started on the GPU (`library=CUDA`) and `qwen3:8b` was pulled.
 
 ## End of every session (do not skip)
 
@@ -169,7 +188,9 @@ It was written to match steps 5 and 6 and is **not yet tested**: its first use i
 
 ## Not yet verified
 
+- Whether a newer Ollama can run on the lab driver (needed for a local gpt-oss-20b).
+- Whether the hosted endpoint for gpt-oss-20b is accepted by the instructor.
 - Whether the notebook and GPU still work after your booked slot has ended.
-- Whether a Streamlit app can be opened in the browser from the lab.
+- Streamlit: opening `.../proxy/8501/` on the notebook address returned `404 Not Found` in S2 (no `jupyter-server-proxy`). A Streamlit demo cannot be opened through the lab. Use a screen recording or run it on a laptop.
 - Whether two sessions can be booked on the same day.
 - Whether teammates can be added as contributors to one notebook (the Kubeflow menu has *Manage Contributors*).
