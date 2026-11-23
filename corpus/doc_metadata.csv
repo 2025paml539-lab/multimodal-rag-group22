@@ -1,0 +1,169 @@
+doc_id,doc_type,topic,source,date,sensitivity
+D001,master_direction,government_business,RBI Master Directions,,public
+D002,master_direction,government_business,RBI Master Directions,2018-11-22,public
+D003,master_direction,fraud_payments,RBI Master Directions,2026,public
+D004,master_direction,government_business,RBI Master Directions,2026-06-24,public
+D005,master_direction,customer_protection,RBI Master Directions,2026,public
+D006,master_direction,customer_protection,RBI Master Directions,2026,public
+D007,master_direction,fraud_payments,RBI Master Directions,2026,public
+D008,master_direction,customer_protection,RBI Master Directions,2026,public
+D009,master_direction,fraud_payments,RBI Master Directions,2026,public
+D010,master_direction,lending_credit,RBI Master Directions,2026,public
+D011,master_direction,customer_protection,RBI Master Directions,2023,public
+D012,master_direction,lending_credit,RBI Master Directions,2026,public
+D013,master_direction,prudential_supervision,RBI Master Directions,2026,public
+D014,master_direction,lending_credit,RBI Master Directions,2027-04-01,public
+D015,master_direction,prudential_supervision,RBI Master Directions,2026,public
+D016,master_direction,prudential_supervision,RBI Master Directions,2026,public
+D017,master_direction,licensing_structure,RBI Master Directions,2026-10-19,public
+D018,master_direction,licensing_structure,RBI Master Directions,2025,public
+D019,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D020,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D021,master_direction,customer_protection,RBI Master Directions,2026-10-01,public
+D022,master_direction,kyc_aml,RBI Master Directions,2026-10-01,public
+D023,master_direction,prudential_supervision,RBI Master Directions,2026-07-01,public
+D024,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D025,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D026,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D027,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D028,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D029,master_direction,lending_credit,RBI Master Directions,2025,public
+D030,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D031,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D032,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D033,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D034,master_direction,lending_credit,RBI Master Directions,2026-07-01,public
+D035,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D036,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D037,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D038,master_direction,licensing_structure,RBI Master Directions,2025,public
+D039,master_direction,prudential_supervision,RBI Master Directions,2026-10-07,public
+D040,master_direction,prudential_supervision,RBI Master Directions,2026-10-09,public
+D041,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D042,master_direction,licensing_structure,RBI Master Directions,2026-10-05,public
+D043,master_direction,fraud_payments,RBI Master Directions,2025,public
+D044,master_direction,licensing_structure,RBI Master Directions,2026-10-01,public
+D045,master_direction,licensing_structure,RBI Master Directions,2025,public
+D046,master_direction,licensing_structure,RBI Master Directions,2026-10-01,public
+D047,master_direction,forex_fema,RBI Master Directions,2026-04-01,public
+D048,master_direction,licensing_structure,RBI Master Directions,2025,public
+D049,master_direction,prudential_supervision,RBI Master Directions,2026,public
+D050,master_direction,licensing_structure,RBI Master Directions,2026-10-19,public
+D051,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D052,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D053,master_direction,customer_protection,RBI Master Directions,2026-10-01,public
+D054,master_direction,kyc_aml,RBI Master Directions,2026-10-01,public
+D055,master_direction,prudential_supervision,RBI Master Directions,2026-07-01,public
+D056,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D057,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D058,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D059,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D060,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D061,master_direction,lending_credit,RBI Master Directions,2025,public
+D062,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D063,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D064,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D065,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D066,master_direction,lending_credit,RBI Master Directions,2026-07-01,public
+D067,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D068,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D069,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D070,master_direction,licensing_structure,RBI Master Directions,2025,public
+D071,master_direction,prudential_supervision,RBI Master Directions,2026-10-07,public
+D072,master_direction,prudential_supervision,RBI Master Directions,2026-10-09,public
+D073,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D074,master_direction,licensing_structure,RBI Master Directions,2026-10-05,public
+D075,master_direction,fraud_payments,RBI Master Directions,2025,public
+D076,master_direction,licensing_structure,RBI Master Directions,2026-10-01,public
+D077,master_direction,licensing_structure,RBI Master Directions,2025,public
+D078,master_direction,licensing_structure,RBI Master Directions,2026-10-01,public
+D079,master_direction,licensing_structure,RBI Master Directions,2025,public
+D080,master_direction,fraud_payments,RBI Master Directions,2026,public
+D081,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D082,master_direction,fraud_payments,RBI Master Directions,2025,public
+D083,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D084,master_direction,kyc_aml,RBI Master Directions,2026-10-01,public
+D085,master_direction,fraud_payments,RBI Master Directions,2026-04-01,public
+D086,master_direction,fraud_payments,RBI Master Directions,2025,public
+D087,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D088,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D089,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D090,master_direction,fraud_payments,RBI Master Directions,2026-10-07,public
+D091,master_direction,fraud_payments,RBI Master Directions,2026-10-09,public
+D092,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D093,master_direction,fraud_payments,RBI Master Directions,2025-12-05,public
+D094,master_direction,fraud_payments,RBI Master Directions,2025,public
+D095,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D096,master_direction,fraud_payments,RBI Master Directions,2025,public
+D097,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D098,master_direction,prudential_supervision,RBI Master Directions,2026,public
+D099,master_direction,licensing_structure,RBI Master Directions,2026-10-05,public
+D100,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D101,master_direction,customer_protection,RBI Master Directions,2026-10-01,public
+D102,master_direction,kyc_aml,RBI Master Directions,2026-10-01,public
+D103,master_direction,prudential_supervision,RBI Master Directions,2026-05-18,public
+D104,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D105,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D106,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D107,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D108,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D109,master_direction,lending_credit,RBI Master Directions,2025,public
+D110,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D111,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D112,master_direction,lending_credit,RBI Master Directions,2026-07-01,public
+D113,master_direction,lending_credit,RBI Master Directions,2026-07-01,public
+D114,master_direction,fraud_payments,RBI Master Directions,2026-10-01,public
+D115,master_direction,lending_credit,RBI Master Directions,2026-04-01,public
+D116,master_direction,lending_credit,RBI Master Directions,2026-10-01,public
+D117,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D118,master_direction,prudential_supervision,RBI Master Directions,2026-10-09,public
+D119,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D120,master_direction,fraud_payments,RBI Master Directions,2025,public
+D121,master_direction,licensing_structure,RBI Master Directions,2026-10-01,public
+D122,master_direction,licensing_structure,RBI Master Directions,2025,public
+D123,master_direction,licensing_structure,RBI Master Directions,2026-10-01,public
+D124,master_direction,prudential_supervision,RBI Master Directions,2026,public
+D125,master_direction,licensing_structure,RBI Master Directions,2025,public
+D126,master_direction,customer_protection,RBI Master Directions,2026-07-01,public
+D127,master_direction,kyc_aml,RBI Master Directions,2026-09-18,public
+D128,master_direction,prudential_supervision,RBI Master Directions,2026-04-01,public
+D129,master_direction,prudential_supervision,RBI Master Directions,2025,public
+D130,master_direction,prudential_supervision,RBI Master Directions,2026-10-01,public
+D131,annual_report,monetary_economy,RBI Annual Report 2025-26,2025,public
+D132,annual_report,monetary_economy,RBI Annual Report 2025-26,2025,public
+D133,annual_report,monetary_economy,RBI Annual Report 2025-26,2025,public
+D134,annual_report,lending_credit,RBI Annual Report 2025-26,2025,public
+D135,annual_report,forex_fema,RBI Annual Report 2025-26,2025,public
+D136,annual_report,prudential_supervision,RBI Annual Report 2025-26,2025,public
+D137,annual_report,government_business,RBI Annual Report 2025-26,2025,public
+D138,annual_report,other,RBI Annual Report 2025-26,2025,public
+D139,annual_report,fraud_payments,RBI Annual Report 2025-26,2025,public
+D140,annual_report,other,RBI Annual Report 2025-26,2025,public
+D141,annual_report,prudential_supervision,RBI Annual Report 2025-26,2025,public
+D142,annual_report,other,RBI Annual Report 2025-26,2025,public
+D143,slide_deck,financial_inclusion,RBI conference slide deck,2017,public
+D144,slide_deck,financial_inclusion,RBI conference slide deck,2017,public
+D145,booklet_guide,financial_inclusion,RBI financial literacy booklet,2020,public
+D146,booklet_guide,financial_inclusion,RBI financial literacy booklet,2024,public
+D147,booklet_guide,financial_inclusion,RBI financial literacy guide,2013,public
+D148,booklet_guide,financial_inclusion,RBI customer awareness leaflet,2018,public
+D149,slide_deck,lending_credit,Synthetic (generated),,synthetic
+D150,slide_deck,lending_credit,Synthetic (generated),,synthetic
+D151,slide_deck,lending_credit,Synthetic (generated),,synthetic
+D152,slide_deck,lending_credit,Synthetic (generated),,synthetic
+D153,slide_deck,lending_credit,Synthetic (generated),,synthetic
+D154,slide_deck,fraud_payments,Synthetic (generated),,synthetic
+D155,slide_deck,fraud_payments,Synthetic (generated),,synthetic
+D156,slide_deck,fraud_payments,Synthetic (generated),,synthetic
+D157,slide_deck,fraud_payments,Synthetic (generated),,synthetic
+D158,slide_deck,fraud_payments,Synthetic (generated),,synthetic
+D159,slide_deck,kyc_aml,Synthetic (generated),,synthetic
+D160,slide_deck,kyc_aml,Synthetic (generated),,synthetic
+D161,slide_deck,kyc_aml,Synthetic (generated),,synthetic
+D162,slide_deck,kyc_aml,Synthetic (generated),,synthetic
+D163,slide_deck,kyc_aml,Synthetic (generated),,synthetic
+D164,slide_deck,results_performance,Synthetic (generated),,synthetic
+D165,slide_deck,results_performance,Synthetic (generated),,synthetic
+D166,slide_deck,results_performance,Synthetic (generated),,synthetic
+D167,slide_deck,results_performance,Synthetic (generated),,synthetic
+D168,slide_deck,results_performance,Synthetic (generated),,synthetic

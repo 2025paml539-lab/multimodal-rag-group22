@@ -1,0 +1,70 @@
+# Metadata ontology for the corpus (Indian banking and financial regulation).
+# Used (1) at ingestion to attach metadata to every chunk and (2) at query time to
+# narrow candidate documents before retrieval and to ground the prompt.
+# Document-level fields are assigned by scripts/tag_docs.py from the rules below
+# (first matching rule wins) and written to corpus/doc_metadata.csv.
+# Chunk-level fields (modality, page, section) come from the parser.
+
+version: 1
+
+fields:
+  doc_id:      {level: document, type: string,  source: corpus/manifest.csv}
+  doc_type:    {level: document, type: enum,    values_from: doc_types}
+  topic:       {level: document, type: enum,    values_from: topics}
+  source:      {level: document, type: string,  source: corpus/manifest.csv}
+  date:        {level: document, type: string,  format: "YYYY or YYYY-MM-DD when printed in the title, else null"}
+  sensitivity: {level: document, type: enum,    values: [public, synthetic]}
+  modality:    {level: chunk,    type: enum,    values: [text, table, image]}
+  page:        {level: chunk,    type: integer, note: "page number for PDF, slide number for PPT"}
+  section:     {level: chunk,    type: string,  note: "nearest heading on the page when available, else null"}
+
+doc_types:
+  - master_direction      # RBI Master Directions and Directions
+  - annual_report         # RBI Annual Report chapters and appendix tables
+  - slide_deck            # slide decks (real conference slides and generated bank decks)
+  - booklet_guide         # financial literacy booklets, guides and leaflets
+
+topics:
+  - lending_credit           # loans, advances, credit, NBFC, priority sector
+  - kyc_aml                  # KYC, customer due diligence, money laundering
+  - fraud_payments           # fraud, digital payments, UPI, cards, settlement
+  - forex_fema               # foreign exchange, FEMA, external trade
+  - government_business      # agency banks, pensions, bonds, government securities
+  - prudential_supervision   # capital, NPA, stressed assets, supervision, governance
+  - monetary_economy         # monetary policy, inflation, GDP, balance of payments
+  - financial_inclusion      # inclusion, literacy, customer awareness
+  - results_performance      # bank quarterly results and ratios
+  - customer_protection      # ombudsman, responsible business conduct, grievances
+  - licensing_structure      # licensing, branches, mergers, share holding, resource raising
+  - other
+
+# First matching rule wins. Matching is case-insensitive on the manifest title.
+doc_type_rules:
+  - {match: ["annual report"],                                        value: annual_report}
+  - {match: ["slides:", "conference slides", "quarterly results", "loan policy", "fraud report", "kyc guidelines"], value: slide_deck}
+  - {match: ["booklet", "financial literacy guide", "good practices"],  value: booklet_guide}
+  - {match: [],                                                       value: master_direction}   # default
+
+topic_rules:
+  - {match: ["quarterly results"],                                    value: results_performance}
+  - {match: ["kyc", "know your customer", "money laundering", "due diligence"], value: kyc_aml}
+  - {match: ["fraud", "payment", "upi", "card", "settlement", "digital"],       value: fraud_payments}
+  - {match: ["fema", "foreign exchange", "foreign", "external", "export", "import", "overseas"], value: forex_fema}
+  - {match: ["loan", "lending", "credit", "advances", "nbfc", "housing", "priority sector", "interest rate"], value: lending_credit}
+  - {match: ["agency bank", "pension", "bond", "government", "primary dealer", "securities", "debt"], value: government_business}
+  - {match: ["stressed", "capital", "supervis", "governance", "defaulter", "prudential", "audit", "frauds"],  value: prudential_supervision}
+  - {match: ["monetary", "inflation", "economic", "balance of payments", "gross domestic", "savings", "fiscal", "assessment"], value: monetary_economy}
+  - {match: ["inclusion", "literacy", "customer", "fame", "common man"],           value: financial_inclusion}
+  - {match: ["asset classification", "income recognition", "provisioning", "asset liability", "concentration risk", "securitisation", "outsourcing", "climate", "investment", "cash reserve", "financial statements", "risk", "liquidity"], value: prudential_supervision}
+  - {match: ["ombudsman", "responsible business conduct", "grievance", "complaint"], value: customer_protection}
+  - {match: ["licensing", "branch authorisation", "amalgamation", "acquisition", "resource raising", "miscellaneous", "forthcoming", "undertaking of financial services", "voluntary", "shares"], value: licensing_structure}
+  - {match: [],                                                       value: other}               # default
+
+sensitivity_rules:
+  - {source_contains: "Synthetic",                                    value: synthetic}
+  - {match: [],                                                       value: public}
+
+# How the prompts and retrieval consume it:
+#   filter:  restrict candidates by doc_type / topic / modality before dense+BM25 search
+#   prompt:  the template receives the ontology and each hit's doc_id, page, modality,
+#            so answers cite "doc_id, page" and say when the evidence is a table or image.
