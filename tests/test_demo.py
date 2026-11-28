@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 
 from rag import Element, HashEmbedder, HybridIndex, Modality
-from rag.demo import SAMPLES, build_system, recorded_answers, to_markdown
+from rag.demo import SAMPLES, build_system, demo_options, recorded_answers, to_markdown
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -39,6 +39,24 @@ class TestDemoSystem(unittest.TestCase):
         rows = recorded_answers(ROOT)
         self.assertEqual(len(rows), 30)
         self.assertTrue(all(r["recorded_answer"] for r in rows))
+
+    def test_demo_options_hold_samples_golden_and_guardrail_cases(self):
+        opts = demo_options(ROOT)
+        questions = [q for _, q in opts]
+        self.assertEqual(questions[:8], SAMPLES)
+        golden = [l for l, _ in opts if l.split(" ")[0][:2] in ("K-", "S-", "B-", "V-")]
+        self.assertEqual(len(golden), 30)
+        guard = [l for l, _ in opts if l.startswith("Guardrail")]
+        self.assertEqual(len(guard), 20)  # 21 cases minus the blank one
+        self.assertTrue(all(q.strip() for q in questions))
+
+    def test_input_blocked_answer_does_not_claim_retrieval(self):
+        with tempfile.TemporaryDirectory() as d:
+            sys_ = build_system(small_index(d), embedder="hash", llm="fake")
+            md = to_markdown(sys_.ask("My Aadhaar is 2345 6789 0123, is my KYC valid?"))
+            self.assertNotIn("sent to retrieval", md)
+            md_ok = to_markdown(sys_.ask("What period applies to the OVD current address?"))
+            self.assertIn("sent to retrieval", md_ok)
 
     def test_notebooks_are_valid_json(self):
         for name in ("live_demo.ipynb", "part_a_demo.ipynb"):
