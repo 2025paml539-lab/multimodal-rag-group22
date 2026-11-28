@@ -6,7 +6,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence
 from .elements import Hit, Modality
 from .index import HybridIndex
 from .llm import LLMClient
-from .guardrails import RateLimiter, check_input, guard_output
+from .guardrails import RateLimiter, check_input, guard_output, hits_relevant, keyword_in_scope
 from .memory import ConversationMemory
 from .prompts import REFUSAL, render_prompt
 
@@ -52,12 +52,19 @@ def answer_with_guardrails(question: str, index: HybridIndex, llm: LLMClient, li
     gate = limiter.allow(session_id)
     if not gate.allowed:
         return {"text": REFUSAL, "stage": "dos", "verdict": gate, "guard_s": time.perf_counter() - t0}
-    verdict = check_input(question, has_history=bool(memory and len(memory)))
+    verdict = check_input(question, has_history=bool(memory and len(memory)), scope=False)
     if not verdict.allowed:
         return {"text": REFUSAL, "stage": "input", "verdict": verdict, "guard_s": time.perf_counter() - t0}
     guard_in = time.perf_counter() - t0
     standalone = memory.standalone_question(question, llm) if memory else question
-    res = answer_question(standalone, index, llm, variant, **kwargs)
+    hits = index.search(standalone, k=kwargs.get("k", 5), filters=kwargs.get("filters"),
+                        modalities=kwargs.get("modalities"), mode=kwargs.get("mode", "hybrid"))
+    if not keyword_in_scope(standalone) and not hits_relevant(standalone, hits):
+        # no banking word and nothing relevant in the corpus: out of scope, and no LLM call is made
+        from .guardrails import Verdict
+        return {"text": REFUSAL, "stage": "input", "verdict": Verdict(False, "out_of_scope", "no banking term and no relevant text"),
+                "guard_s": time.perf_counter() - t0}
+    res = answer_question(standalone, index, llm, variant, hits=hits, **kwargs)
     t1 = time.perf_counter()
     text, out_verdict = guard_output(res["answer"], res["hits"], standalone)
     guard_s = guard_in + (time.perf_counter() - t1)

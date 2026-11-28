@@ -39,6 +39,22 @@ class TestGuardedPath(unittest.TestCase):
         r = answer_with_guardrails("What is the maximum amount for a home loan?", build(), llm, RateLimiter())
         self.assertEqual((r["verdict"].category, r["text"]), ("ungrounded", REFUSAL))
 
+    def test_real_question_without_banking_keyword_is_answered_when_the_corpus_has_it(self):
+        from rag.guardrails import keyword_in_scope
+        q = "Within what time from the end of the half year must the review go to the Board?"
+        self.assertFalse(keyword_in_scope(q))          # the keyword test alone would have refused it
+        idx = HybridIndex(HashEmbedder())
+        idx.add([Element("D108", 11, Modality.TEXT, "The review shall be placed before the Board within two months from the end of the respective half year.")])
+        llm = FakeLLMClient(["Within two months [D108, p.11]."])
+        r = answer_with_guardrails(q, idx, llm, RateLimiter())
+        self.assertEqual((r["stage"], r["verdict"].category), ("output", "ok"))
+
+    def test_off_topic_question_is_still_refused_without_an_llm_call(self):
+        llm = FakeLLMClient(["x"])
+        r = answer_with_guardrails("What is the best recipe for biryani?", build(), llm, RateLimiter())
+        self.assertEqual((r["stage"], r["verdict"].category), ("input", "out_of_scope"))
+        self.assertEqual(llm.calls, [])
+
     def test_followup_uses_memory(self):
         llm = FakeLLMClient(lambda p: "What is the minimum credit score for personal loans?" if "Rewrite" in p
                             else "The minimum is 700 [loan_policy, p.2].")

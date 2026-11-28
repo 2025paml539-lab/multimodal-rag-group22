@@ -47,8 +47,12 @@ class TestInput(unittest.TestCase):
         for f in list((ROOT / "eval").glob("golden_*.jsonl")) + [ROOT / "corpus" / "sample_decks" / "ground_truth.jsonl"]:
             qs += [json.loads(l)["question"] for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
         self.assertGreaterEqual(len(qs), 8)
-        blocked = [(q, check_input(q).category) for q in qs if not check_input(q).allowed]
+        # scope=False: the pipeline decides scope together with retrieval (see test_guarded_pipeline)
+        blocked = [(q, check_input(q, scope=False).category) for q in qs if not check_input(q, scope=False).allowed]
         self.assertEqual(blocked, [])
+        # the keyword test alone is coarse: record how many real questions it would have rejected
+        from rag.guardrails import keyword_in_scope
+        self.assertGreater(sum(not keyword_in_scope(q) for q in qs), 0)
 
 
 class TestOutput(unittest.TestCase):
