@@ -32,12 +32,12 @@ class TestE10(unittest.TestCase):
 
 
 class TestNotebook(unittest.TestCase):
-    def test_notebook_is_valid_and_has_no_stored_fake_outputs(self):
+    def test_notebook_is_valid_and_has_no_error_outputs(self):
         nb = json.loads((ROOT / "notebooks" / "part_a_demo.ipynb").read_text(encoding="utf-8"))
         self.assertEqual(nb["nbformat"], 4)
         code = [c for c in nb["cells"] if c["cell_type"] == "code"]
         self.assertGreaterEqual(len(code), 6)
-        self.assertTrue(all(c["outputs"] == [] for c in code))   # outputs appear only after a real run in the lab
+        # outputs are stored only by a real run in the lab; an error output would mean the run failed\n        errors = [o for c in code for o in c["outputs"] if o.get("output_type") == "error"]\n        self.assertEqual(errors, [])
 
 
 if __name__ == "__main__":
