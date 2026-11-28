@@ -1,0 +1,19 @@
+{
+  "queries": 8,
+  "runs_per_query": 5,
+  "llm": "ollama",
+  "latency_p50_s": 0.63,
+  "latency_p95_s": 0.83,
+  "latency_limit_s": 90,
+  "consistency_identical_answers": 1.0,
+  "prompt_words_ours_mean": 847.1,
+  "prompt_words_naive_whole_pages_mean": 1346.2,
+  "token_reduction_pct": 37.1,
+  "guardrails": {
+    "queries": 8,
+    "guard_mean_s": 0.001733,
+    "guard_p95_s": 0.002253,
+    "query_without_guard_p95_s": 0.968,
+    "limit_s": 6.0
+  }
+}
