@@ -219,6 +219,7 @@ def e5(ctx):
 
 def e6(ctx):
     idx, lat, same, ours, naive = ctx.index(), [], [], [], []
+    same_hits, unstable = [], []
     page_text = {}
     for e in ctx.elements:
         page_text.setdefault((e.doc_id, e.page), []).append(e)
@@ -226,6 +227,10 @@ def e6(ctx):
         runs = [answer_question(g["question"], idx, ctx.llm, ctx.a.variant, ctx.a.k, ontology=ctx.ontology) for _ in range(5)]
         lat += [r["total_s"] for r in runs]
         same.append(float(len({r["answer"] for r in runs}) == 1))
+        same_hits.append(float(len({tuple(h.element.element_id for h in r["hits"]) for r in runs}) == 1))
+        if len({r["answer"] for r in runs}) != 1 or len({tuple(h.element.element_id for h in r["hits"]) for r in runs}) != 1:
+            unstable.append({"id": g["id"], "answers_differ": len({r["answer"] for r in runs}) != 1,
+                             "retrieval_differs": len({tuple(h.element.element_id for h in r["hits"]) for r in runs}) != 1})
         r0 = runs[0]
         ours.append(r0["prompt_words"])
         pages = {(h.element.doc_id, h.element.page) for h in r0["hits"]}
@@ -249,6 +254,8 @@ def e6(ctx):
         "queries": len(ctx.golden), "runs_per_query": 5, "llm": ctx.a.llm,
         "latency_p50_s": round(pct(lat, 0.5), 3), "latency_p95_s": round(pct(lat, 0.95), 3), "latency_limit_s": 90,
         "consistency_identical_answers": round(statistics.mean(same), 4) if same else None,
+        "consistency_identical_retrieval": round(statistics.mean(same_hits), 4) if same_hits else None,
+        "unstable_queries": unstable,
         "prompt_words_ours_mean": round(statistics.mean(ours), 1) if ours else None,
         "prompt_words_naive_whole_pages_mean": round(statistics.mean(naive), 1) if naive else None,
         "token_reduction_pct": round(100 * (1 - sum(ours) / sum(naive)), 1) if naive and sum(naive) else None,
