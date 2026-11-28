@@ -317,6 +317,7 @@ def e8(ctx):
     variant, rules, log = ctx.a.variant, [], []
     best = score(eval_golden(ctx, dev, variant))
     log.append(("0 (baseline)", "", best))
+    tried = []   # every rule proposed so far, kept or not, so the model is asked for a different one each round
     for it in range(1, ctx.a.iterations + 1):
         fails = [r for r in eval_golden(ctx, dev, variant, extra_rules="\n".join(rules)) if not r["correct"]]
         if not fails:
@@ -324,8 +325,11 @@ def e8(ctx):
         gold = {g["id"]: g["answer"] for g in dev}
         listing = "\n".join(f"- id {r['id']}: gold '{gold[r['id']]}', model said '{r['answer'][:80]}'" for r in fails[:5])
         rule = ctx.llm.generate("A question-answering prompt gave these wrong answers on a development set:\n" + listing +
-                                "\nWrite ONE short general rule (one sentence, no examples from the list) that would help. Rule:",
+                                "\nWrite ONE short general rule (one sentence, no examples from the list) that would help."
+                                + ("\nRules already tried, do not repeat or paraphrase them:\n" + "\n".join(f"- {t}" for t in tried)
+                                   if tried else "") + "\nRule:",
                                 max_tokens=60).text.strip().splitlines()[0][:200]
+        tried.append(rule)
         trial = score(eval_golden(ctx, dev, variant, extra_rules="\n".join(rules + [rule])))
         kept = trial > best
         if kept:
