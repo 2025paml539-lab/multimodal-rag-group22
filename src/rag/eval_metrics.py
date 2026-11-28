@@ -69,8 +69,21 @@ def cites_retrieved(answer: str, hits: Sequence[Hit]) -> bool:
     return bool(cites) and all(c in have for c in cites)
 
 
+_NUM_WORDS = {w: str(i) for i, w in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen "
+    "seventeen eighteen nineteen twenty".split())}
+_NUM_WORDS.update({"thirty": "30", "forty": "40", "fifty": "50", "sixty": "60", "seventy": "70", "eighty": "80",
+                   "ninety": "90"})
+_CURRENCY = re.compile(r"₹|\brs\.?(?=\s|\d)|\binr\b|\brupees?\b")
+
+
 def normalise(text: str) -> str:
+    """Lower-case, drop citations and punctuation. Equivalent forms are made identical so that a correct answer is
+    not marked wrong for its wording: number words (three = 3) and rupee marks (₹, Rs., INR, rupees = rs).
+    Added after lab session S3, where 4 of 5 answers scored wrong were correct but worded differently."""
     t = text.lower()
+    t = _CURRENCY.sub(" rs ", t)
+    t = re.sub(r"\b(" + "|".join(_NUM_WORDS) + r")\b", lambda m: _NUM_WORDS[m.group(1)], t)
     t = re.sub(r"(?<=\d),(?=\d)", "", t)          # 1,250 -> 1250
     t = _CITE.sub(" ", t)                         # drop citations
     t = re.sub(r"[^a-z0-9.\s]", " ", t)

@@ -51,6 +51,15 @@ class TestAnswerMetrics(unittest.TestCase):
         self.assertEqual(correctness("The rate is 8.6 % p.a.", "8.6"), 1.0)
         self.assertEqual(correctness("The rate is 18.6", "8.6"), 0.0)
 
+    def test_equivalent_wording_is_not_marked_wrong(self):
+        # the four answers from lab session S3 that were correct but scored wrong
+        self.assertEqual(correctness("within three working days [D021, p.30].", "3 working days"), 1.0)
+        self.assertEqual(correctness("The maximum liability is \u20b95,000 [D083, p.15].", "Rs 5,000"), 1.0)
+        self.assertEqual(correctness("limit is Rs. 25,000", "Rs 25,000"), 1.0)
+        self.assertEqual(correctness("it is INR 25000", "Rs 25,000"), 1.0)
+        self.assertEqual(correctness("the category is Home loan [D149, p.4].", "Education loan"), 0.0)
+        self.assertEqual(correctness("within thirteen working days", "3 working days"), 0.0)
+
     def test_refusing_a_gold_answer_is_wrong_and_judge_is_used_otherwise(self):
         self.assertEqual(correctness("Not found in the documents.", "1250"), 0.0)
         yes = FakeLLMClient(["yes"])
