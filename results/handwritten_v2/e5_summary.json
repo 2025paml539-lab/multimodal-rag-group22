@@ -1,0 +1,52 @@
+{
+  "variant": "v2_citation_rules",
+  "n": 8,
+  "all": {
+    "n": 8,
+    "recall": 1.0,
+    "mrr": 0.7229,
+    "correct": 1.0,
+    "faithful": 0.75,
+    "cited_ok": 1.0
+  },
+  "modality:image": {
+    "n": 2,
+    "recall": 1.0,
+    "mrr": 1.0,
+    "correct": 1.0,
+    "faithful": 1.0,
+    "cited_ok": 1.0
+  },
+  "modality:table": {
+    "n": 2,
+    "recall": 1.0,
+    "mrr": 0.225,
+    "correct": 1.0,
+    "faithful": 0.5,
+    "cited_ok": 1.0
+  },
+  "modality:text": {
+    "n": 4,
+    "recall": 1.0,
+    "mrr": 0.8333,
+    "correct": 1.0,
+    "faithful": 0.75,
+    "cited_ok": 1.0
+  },
+  "split:dev": {
+    "n": 4,
+    "recall": 1.0,
+    "mrr": 0.6458,
+    "correct": 1.0,
+    "faithful": 1.0,
+    "cited_ok": 1.0
+  },
+  "split:test": {
+    "n": 4,
+    "recall": 1.0,
+    "mrr": 0.8,
+    "correct": 1.0,
+    "faithful": 0.5,
+    "cited_ok": 1.0
+  }
+}
