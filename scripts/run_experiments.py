@@ -3,6 +3,7 @@
 Each experiment writes its own file and can be re-run alone, so a lost lab session costs only that experiment:
     E1 e1_inventory.json     E2 e2_chunking.csv      E3 e3_retrieval.csv     E4 e4_transcript.md
     E5 e5_answers.csv        E6 e6_benchmark.json    E7 e7_ablation.csv      E8 e8_iterations.md
+    E9 e9_guardrails.csv
 
 Laptop check (no GPU, no model):  python scripts/run_experiments.py --embedder hash --llm fake --limit 5
 Lab (after scripts/ingest_corpus.py):  python scripts/run_experiments.py --embedder st --llm ollama --model qwen3:8b
@@ -31,7 +32,7 @@ from rag.pipeline import answer_question  # noqa: E402
 from rag.prompts import VARIANTS, load_ontology, render_prompt  # noqa: E402
 
 CONFIGS = {"A": ChunkConfig(200, 40), "B": ChunkConfig(60, 10)}
-ALL = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8"]
+ALL = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"]
 _BLOCK = re.compile(r"\[([^\[\],]+), p\.(\d+)\] \(\w+\)\n(.+)")
 
 
@@ -227,19 +228,20 @@ def e6(ctx):
         pages = {(h.element.doc_id, h.element.page) for h in r0["hits"]}
         whole = [Hit(e, 1.0, i) for i, e in enumerate(x for p in sorted(pages) for x in page_text.get(p, []))]
         naive.append(len(render_prompt(ctx.a.variant, g["question"], whole, ctx.ontology).split()))
-    guard = {"available": False, "note": "src/rag/guardrails.py not present (branch B5 not merged)"}
-    try:
-        from rag import guardrails
-        qs = [g["question"] for g in ctx.golden]
-        t = []
-        for q in qs:
-            t0 = time.perf_counter()
-            guardrails.check_input(q)
-            t.append(time.perf_counter() - t0)
-        guard = {"available": True, "p95_check_input_s": round(pct(t, 0.95), 5), "limit_s": 6.0}
-    except Exception as e:
-        if not isinstance(e, ImportError):
-            guard["note"] = f"guardrails raised {e!r}"
+    from rag import guardrails
+    limiter = guardrails.RateLimiter(max_requests=10**6)
+    g_times, plain_times = [], []
+    for g in ctx.golden:
+        r = answer_question(g["question"], idx, ctx.llm, ctx.a.variant, ctx.a.k, ontology=ctx.ontology)
+        t0 = time.perf_counter()
+        guardrails.check_input(g["question"])
+        limiter.allow("bench")
+        guardrails.check_output(r["answer"], r["hits"], g["question"])
+        g_times.append(time.perf_counter() - t0)
+        plain_times.append(r["total_s"])
+    guard = {"queries": len(g_times), "guard_mean_s": round(statistics.mean(g_times), 6) if g_times else None,
+             "guard_p95_s": round(pct(g_times, 0.95), 6), "query_without_guard_p95_s": round(pct(plain_times, 0.95), 3),
+             "limit_s": 6.0}
     write_json(ctx.out / "e6_benchmark.json", {
         "queries": len(ctx.golden), "runs_per_query": 5, "llm": ctx.a.llm,
         "latency_p50_s": round(pct(lat, 0.5), 3), "latency_p95_s": round(pct(lat, 0.95), 3), "latency_limit_s": 90,
@@ -258,6 +260,21 @@ def e7(ctx):
         rows.append({"variant": v, "n": s["n"], "correct": s["correct"], "faithful": s["faithful"],
                      "cited_ok": s["cited_ok"], "refused": s["refused"]})
     write_csv(ctx.out / "e7_ablation.csv", rows)
+
+
+def e9(ctx):
+    from rag import guardrails
+    path = ROOT / "eval" / "guardrail_tests.jsonl"
+    rows = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        c = json.loads(line)
+        v = guardrails.check_input(c["question"])
+        rows.append({"expected": c["expected"], "got": v.category, "pass": int(v.category == c["expected"]),
+                     "question": c["question"].strip()[:80], "reason": v.reason})
+    write_csv(ctx.out / "e9_guardrails.csv", rows)
+    print(f"  {sum(r['pass'] for r in rows)}/{len(rows)} guardrail cases passed", flush=True)
 
 
 def e8(ctx):
@@ -319,7 +336,7 @@ def main() -> int:
         raise SystemExit(f"unknown experiments {bad}; choose from {ALL}")
     ctx = Ctx(a)
     print(f"{len(ctx.elements)} elements, {len(ctx.golden)} golden questions, llm={a.llm}, embedder={a.embedder}", flush=True)
-    fns = {"E1": e1, "E2": e2, "E3": e3, "E4": e4, "E5": e5, "E6": e6, "E7": e7, "E8": e8}
+    fns = {"E1": e1, "E2": e2, "E3": e3, "E4": e4, "E5": e5, "E6": e6, "E7": e7, "E8": e8, "E9": e9}
     for name in wanted:
         t = time.perf_counter()
         print(f"{name} ...", flush=True)
