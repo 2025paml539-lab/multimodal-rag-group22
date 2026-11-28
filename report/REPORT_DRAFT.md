@@ -37,10 +37,18 @@ PCAM ZG516 Applied Generative AI, Assignment 2 Part A. Group 22: Nandhaluru Kish
 | Hybrid, text only | 0.900 | 0.661 |
 
   BM25 is best. Multimodal hybrid is not better than text-only on this set: only 2 of 30 questions are image-based.
+
 - **Memory (E4, `final_30/e4_transcript.md`):** short-term memory rewrites a follow-up into a stand-alone question. Two real two-turn conversations from verified tables: in conversation 2 the follow-up "And for bucket 3?" is answered correctly with memory (18%) and fails without it ("Not found in the documents."). In conversation 1 the answer without memory is also correct, but it cites a different document (D003, p.26), so it is right by luck.
 
 ## 7. HLD and LLD
-See `docs/HLD.md`, `docs/LLD.md`, `docs/constraint_map.md` (Mermaid diagrams, to render into the PDF).
+**High-level design, ingestion and query paths** (source: `docs/HLD.md`):
+
+{{HLD_DIAGRAM}}
+
+**Sequence of one query** (source: `docs/LLD.md`; module interfaces, schemas and error handling are listed there, and every constraint of the brief is mapped to a design decision in `docs/constraint_map.md`):
+
+{{LLD_SEQUENCE}}
+
 
 ## 8. Prompting layer
 - **Ablation (E7, 30 questions, `final_30/e7_ablation.csv`):**
@@ -70,6 +78,22 @@ See `docs/HLD.md`, `docs/LLD.md`, `docs/constraint_map.md` (Mermaid diagrams, to
 - Guardrails and DoS: mean 3.1 ms, P95 4.9 ms (limit 6 s); the same query takes 1.165 s at P95 without them.
 - Consistency over 5 runs per query: identical retrieved items **100%**, identical answers **90%** (K-06, K-07, S-02 differ). The retrieval is deterministic; the variation comes from the model server.
 - Tokens: our prompts average 865.7 words against 1,440.5 words for sending whole pages, **39.9% fewer** (words, not model tokens).
+
+### Integrated demonstration (E10, `results/e10/e10_demo.md`, qwen3:8b on the A100, executed also in `notebooks/part_a_demo.ipynb`)
+One scripted session through the full guarded path (rate limit, input guardrail, memory, retrieval, prompt, model, output guardrail). 7 of 8 steps behaved as expected.
+
+| Step | Stage / verdict | Answer | Time |
+|---|---|---|---|
+| Text question (OVD, D054) | output / ok | "Within a period of three months" [D054, p.8] | 1.10 s |
+| Table question (free folios, D126) | output / ok | "5" [D126, p.33] | 1.37 s |
+| Follow-up using memory | output / ok | "10" [D126, p.33] | 1.09 s |
+| Chart question (synthetic deck) | output / ok | "Education loan" [D149, p.3] (gold page is p.4) | 0.91 s |
+| Prompt injection | input / prompt_injection | refusal, no model call | 0 s |
+| Off-topic ("recipe for biryani") | output / refusal (**expected: blocked at input**) | refusal from the model | 1.27 s |
+| Personal data (Aadhaar number) | input / personal_data | refusal, no model call | 0 s |
+| Banking question with no evidence | output / refusal | refusal | 0.99 s |
+
+The one miss: the word "best" appears in banking text, so retrieval counted the biryani question as relevant and it reached the model. The user still received a refusal, but the early block did not fire.
 
 ## 11. Failure analysis and limitations
 1. **Table slides lost their context (found on the synthetic set).** A table slide does not repeat the deck name, so a question naming the deck ranked the title slide and table recall was 0.0. Fix: index each chunk with its document title. Result: recall 1.0.

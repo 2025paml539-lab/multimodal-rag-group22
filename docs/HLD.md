@@ -4,33 +4,33 @@ Everything below describes code that exists in this repository. Items not built 
 
 ## Components and data flow
 ```mermaid
-flowchart LR
-  subgraph Ingestion["Ingestion path (lab, scripts/ingest_corpus.py)"]
-    C[corpus/manifest.csv + doc_metadata.csv] --> R[registry.py: file -> doc_id + metadata]
-    P[PDF / PPTX files] --> PA[parsers.py: text, tables, images]
-    PA --> OCR[ocr.py: RapidOCR on images]
-    R --> M[attach doc_type, topic, sensitivity]
+flowchart TB
+  subgraph ING["Ingestion path (lab, scripts/ingest_corpus.py)"]
+    C["corpus/manifest.csv and doc_metadata.csv"] --> R["registry.py: file to doc_id and metadata"]
+    P["PDF and PPTX files"] --> PA["parsers.py: text, tables, images"]
+    PA --> OCR["ocr.py: RapidOCR on images"]
+    R --> M["attach doc_type, topic, sensitivity, title"]
     PA --> M
     OCR --> M
-    M --> CH[chunking.py: config A 200w/40, config B 60w/10]
-    CH --> EM[embedding.py: all-MiniLM-L6-v2 on GPU]
-    EM --> IX[(HybridIndex: elements.json + dense.npy)]
+    M --> CH["chunking.py: config A 200 words, config B 60 words"]
+    CH --> EM["embedding.py: all-MiniLM-L6-v2 on GPU"]
+    EM --> IX[("HybridIndex: elements.json and dense.npy")]
   end
-  subgraph Query["Query path (pipeline.answer_with_guardrails)"]
-    Q[User question] --> DOS[RateLimiter]
-    DOS --> GI[guardrails.check_input]
-    GI --> MEM[memory.standalone_question]
-    MEM --> RET[HybridIndex.search: BM25 + dense, rank fusion, metadata filters]
+  subgraph QRY["Query path (pipeline.answer_with_guardrails)"]
+    Q["User question"] --> DOS["RateLimiter"]
+    DOS --> GI["guardrails.check_input"]
+    GI --> MEM["memory.standalone_question"]
+    MEM --> RET["HybridIndex.search: BM25 and dense, rank fusion, metadata filters"]
     IX --> RET
-    RET --> PR[prompts.render_prompt: Jinja2 template + ontology]
-    PR --> LLM[llm.py: Ollama or hosted client]
-    LLM --> GO[guardrails.guard_output: grounded, cited, else refusal]
-    GO --> A[Answer with [document, p.N]]
+    RET --> PR["prompts.render_prompt: Jinja2 template and ontology"]
+    PR --> LLM["llm.py: Ollama or hosted client"]
+    LLM --> GO["guardrails.guard_output: grounded and cited, else refusal"]
+    GO --> A["Answer with document and page citation"]
   end
-  subgraph Eval["Evaluation (scripts/run_experiments.py)"]
-    G[eval/golden_*.jsonl] --> EV[eval_metrics.py]
+  subgraph EVL["Evaluation (scripts/run_experiments.py)"]
+    G["eval/golden_*.jsonl"] --> EV["eval_metrics.py"]
     A --> EV
-    EV --> RES[results/e1 ... e9]
+    EV --> RES["results/final_30 and others"]
   end
 ```
 
