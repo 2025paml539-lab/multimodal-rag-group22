@@ -194,18 +194,37 @@ def e3(ctx):
     write_csv(ctx.out / "e3_retrieval.csv", rows)
 
 
+# Two conversations whose follow-up needs the first question. Answers are in verified tables (golden K-05, B-05, S-05).
+CONVERSATIONS = [
+    ("In the free-folios table, how many free folios apply to an average credit balance above Rs 50,000 and up to Rs 1 lakh?",
+     "5",
+     "And for a balance above Rs 1 lakh and up to Rs 2 lakh?", "10"),
+    ("What is the BI marginal coefficient for bucket 2 (8000 < BI <= 240000) in the business indicator table?",
+     "15%",
+     "And for bucket 3?", "18"),
+]
+
+
 def e4(ctx):
-    mem, idx = ConversationMemory(), ctx.index()
+    """Multi-turn demonstration: the follow-up only makes sense with the first turn, so it is rewritten with memory.
+    The transcript also records the answer without memory, to show what the memory adds."""
+    idx = ctx.index()
     lines = ["# E4 memory follow-up transcript", "", f"LLM: {ctx.a.llm} {ctx.a.model if ctx.a.llm != 'fake' else ''}", ""]
-    first = ctx.golden[0]
-    turns = [first["question"], "And what about the next page of that document?"]
-    for q in turns:
-        standalone = mem.standalone_question(q, ctx.llm)
-        r = answer_question(standalone, idx, ctx.llm, ctx.a.variant, ctx.a.k, ontology=ctx.ontology)
-        lines += [f"**User:** {q}", f"**Rewritten:** {standalone}",
-                  f"**Top hits:** {' | '.join(h.citation + ' ' + h.element.modality.value for h in r['hits'][:3])}",
-                  f"**Answer:** {r['answer']}", ""]
-        mem.add(q, r["answer"])
+    for n, (q1, a1, q2, a2) in enumerate(CONVERSATIONS, 1):
+        mem = ConversationMemory()
+        lines += [f"## Conversation {n}", ""]
+        r1 = answer_question(q1, idx, ctx.llm, ctx.a.variant, ctx.a.k, ontology=ctx.ontology)
+        mem.add(q1, r1["answer"])
+        lines += [f"**User (turn 1):** {q1}", f"**Top hits:** {' | '.join(h.citation for h in r1['hits'][:3])}",
+                  f"**Answer:** {r1['answer']}  (expected: {a1}; correct: {bool(correctness(r1['answer'], a1))})", ""]
+        standalone = mem.standalone_question(q2, ctx.llm)
+        r2 = answer_question(standalone, idx, ctx.llm, ctx.a.variant, ctx.a.k, ontology=ctx.ontology)
+        r2_plain = answer_question(q2, idx, ctx.llm, ctx.a.variant, ctx.a.k, ontology=ctx.ontology)
+        lines += [f"**User (turn 2, follow-up):** {q2}", f"**Rewritten with memory:** {standalone}",
+                  f"**Top hits:** {' | '.join(h.citation for h in r2['hits'][:3])}",
+                  f"**Answer with memory:** {r2['answer']}  (expected: {a2}; correct: {bool(correctness(r2['answer'], a2))})",
+                  f"**Answer without memory (same follow-up, no history):** {r2_plain['answer']}  "
+                  f"(correct: {bool(correctness(r2_plain['answer'], a2))})", ""]
     (ctx.out / "e4_transcript.md").parent.mkdir(parents=True, exist_ok=True)
     (ctx.out / "e4_transcript.md").write_text("\n".join(lines), encoding="utf-8")
     print(f"  wrote {ctx.out / 'e4_transcript.md'}", flush=True)
