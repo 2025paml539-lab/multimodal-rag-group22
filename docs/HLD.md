@@ -49,8 +49,7 @@ flowchart LR
 Lab (Kubeflow notebook, A100): ingestion, embeddings, every experiment, every reported number. A laptop: code, offline tests, and a demo against a downloaded index. Streamlit cannot be served through the lab proxy (404 in session S2).
 
 ## Not built yet
-- Streamlit demo app.
+- Streamlit demo app (the integrated path runs through `scripts/e10_demo.py` and the notebook instead).
 - Automatic routing from a question to metadata filters (filters exist as an argument; nothing sets them from the question).
 - Long-term memory and a query cache.
 - Layout or object detection (YOLO). Only OCR is used for images.
-- The automatic evaluation method required by Task A4 (LLM-as-judge is available as `--judge`; the comparison with the golden set is not written).
