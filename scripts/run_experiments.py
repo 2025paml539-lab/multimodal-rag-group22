@@ -3,6 +3,7 @@
 Each experiment writes its own file and can be re-run alone, so a lost lab session costs only that experiment:
     E1 e1_inventory.json     E2 e2_chunking.csv      E3 e3_retrieval.csv     E4 e4_transcript.md
     E5 e5_answers.csv        E6 e6_benchmark.json    E7 e7_ablation.csv      E8 e8_iterations.md
+    E5B e5_auto_eval.csv + e5_auto_eval_summary.json (LLM-as-judge, never sees the golden answer, compared with E5)
     E9 e9_guardrails.csv
 
 Laptop check (no GPU, no model):  python scripts/run_experiments.py --embedder hash --llm fake --limit 5
@@ -29,10 +30,11 @@ from rag.eval_metrics import (cites_retrieved, correctness, faithfulness, is_ref
                               recall_at_k, summarise)
 from rag.index import _element_from_dict  # noqa: E402
 from rag.pipeline import answer_question  # noqa: E402
-from rag.prompts import VARIANTS, load_ontology, render_prompt  # noqa: E402
+from rag.auto_eval import compare_with_golden, judge  # noqa: E402
+from rag.prompts import ABLATION_STYLES, VARIANTS, load_ontology, render_prompt  # noqa: E402
 
 CONFIGS = {"A": ChunkConfig(200, 40), "B": ChunkConfig(60, 10)}
-ALL = ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"]
+ALL = ["E1", "E2", "E3", "E4", "E5", "E5B", "E6", "E7", "E8", "E9"]
 _BLOCK = re.compile(r"\[([^\[\],]+), p\.(\d+)\] \(\w+\)\n(.+)")
 
 
@@ -135,6 +137,7 @@ def eval_golden(ctx, golden, variant, mode="hybrid", modalities=None, extra_rule
                      "faithful": faithfulness(r["answer"], r["hits"]),
                      "cited_ok": float(cites_retrieved(r["answer"], r["hits"])),
                      "refused": float(is_refusal(r["answer"])), "total_s": round(r["total_s"], 3),
+                     "input_tokens": r["input_tokens"], "output_tokens": r["output_tokens"],
                      "answer": r["answer"].replace("\n", " ")[:300]})
     return rows
 
@@ -252,13 +255,40 @@ def e6(ctx):
         "guardrails": guard})
 
 
-def e7(ctx):
+def e5b(ctx):
+    """Automatic evaluation. The judge never sees the golden answer; its verdict is compared with golden correctness."""
     rows = []
-    for v in VARIANTS:
-        r = eval_golden(ctx, ctx.golden, v)
+    for g in ctx.golden:
+        r = answer_question(g["question"], ctx.index(), ctx.llm, ctx.a.variant, ctx.a.k, ontology=ctx.ontology)
+        v = judge(ctx.llm, g["question"], r["answer"], r["hits"])
+        ok = None if v is None else int(v["supported"] and v["answers_question"])
+        rows.append({"id": g["id"], "split": g["split"], "modality": g["modality"],
+                     "correct": correctness(r["answer"], g["answer"], None), "judge_ok": ok,
+                     "supported": None if v is None else int(v["supported"]),
+                     "answers_question": None if v is None else int(v["answers_question"]),
+                     "answer": r["answer"].replace("\n", " ")[:200]})
+    write_csv(ctx.out / "e5_auto_eval.csv", rows)
+    write_json(ctx.out / "e5_auto_eval_summary.json", compare_with_golden(rows))
+
+
+def e7(ctx):
+    """The five prompt styles named in the brief, same model and questions: quality, tokens, latency, consistency."""
+    rows = []
+    for style in ABLATION_STYLES:
+        r = eval_golden(ctx, ctx.golden, style)
         s = summarise(r, ("correct", "faithful", "cited_ok", "refused"))["all"]
-        rows.append({"variant": v, "n": s["n"], "correct": s["correct"], "faithful": s["faithful"],
-                     "cited_ok": s["cited_ok"], "refused": s["refused"]})
+        lat = [x["total_s"] for x in r]
+        same = []
+        for g in ctx.golden:
+            answers = {answer_question(g["question"], ctx.index(), ctx.llm, style, ctx.a.k,
+                                       ontology=ctx.ontology)["answer"] for _ in range(5)}
+            same.append(float(len(answers) == 1))
+        rows.append({"style": style, "n": s["n"], "correct": s["correct"], "faithful": s["faithful"],
+                     "cited_ok": s["cited_ok"], "refused": s["refused"],
+                     "input_tokens_mean": round(statistics.mean(x["input_tokens"] for x in r), 1) if r else None,
+                     "output_tokens_mean": round(statistics.mean(x["output_tokens"] for x in r), 1) if r else None,
+                     "latency_p50_s": round(pct(lat, 0.5), 3), "latency_p95_s": round(pct(lat, 0.95), 3),
+                     "consistency": round(statistics.mean(same), 4) if same else None})
     write_csv(ctx.out / "e7_ablation.csv", rows)
 
 
@@ -336,7 +366,7 @@ def main() -> int:
         raise SystemExit(f"unknown experiments {bad}; choose from {ALL}")
     ctx = Ctx(a)
     print(f"{len(ctx.elements)} elements, {len(ctx.golden)} golden questions, llm={a.llm}, embedder={a.embedder}", flush=True)
-    fns = {"E1": e1, "E2": e2, "E3": e3, "E4": e4, "E5": e5, "E6": e6, "E7": e7, "E8": e8, "E9": e9}
+    fns = {"E1": e1, "E2": e2, "E3": e3, "E4": e4, "E5": e5, "E5B": e5b, "E6": e6, "E7": e7, "E8": e8, "E9": e9}
     for name in wanted:
         t = time.perf_counter()
         print(f"{name} ...", flush=True)
