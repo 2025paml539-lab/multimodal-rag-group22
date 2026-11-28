@@ -35,23 +35,28 @@ def _configure_layout() -> None:
         pass
 
 
-def _table_rows(page, table) -> List[List[str]]:
-    """Cell text read from each cell's box on the page.
+def _table_rows(page, table, words=None) -> List[List[str]]:
+    """Cell text rebuilt from the page's words, which are read once per page.
 
-    table.extract() dropped spaces ("Home loan" -> "Homeloan") and split the decimal
-    point onto its own line ("8.6" -> "86\\n."), seen in lab session S2. Reading the
-    page text inside each cell box keeps both. Falls back to extract() if the table
-    has no cell boxes.
+    table.extract() dropped spaces ("Home loan" -> "Homeloan") and split the decimal point onto its own line
+    ("8.6" -> "86" plus a "." line), seen in lab session S2. A first fix called page.get_textbox() for every cell;
+    that rescans the whole page each time and took 102 of 112 s on a 70-page RBI PDF (3,161 cells). Here a word
+    belongs to the cell that contains its centre. Falls back to extract() if the table has no cell boxes.
     """
     try:
+        if words is None:
+            words = page.get_text("words")
         rows = []
         for row in table.rows:
             cells = []
             for box in row.cells:
                 if box is None:
                     cells.append("")
-                else:
-                    cells.append(" ".join(page.get_textbox(box).split()))
+                    continue
+                x0, y0, x1, y1 = box
+                inside = [w for w in words if x0 <= (w[0] + w[2]) / 2 <= x1 and y0 <= (w[1] + w[3]) / 2 <= y1]
+                inside.sort(key=lambda w: (w[5], w[6], w[7]))   # block, line, word number
+                cells.append(" ".join(w[4] for w in inside))
             rows.append(cells)
         if rows:
             return rows
@@ -82,8 +87,10 @@ def parse_pdf(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = Non
                 elements.append(Element(doc_id, page_no, Modality.TEXT, text, metadata={**meta, "el": el}))
                 el += 1
 
-            for table in page.find_tables().tables:
-                rows = _table_rows(page, table)
+            tables = page.find_tables().tables
+            words = page.get_text("words") if tables else None
+            for table in tables:
+                rows = _table_rows(page, table, words)
                 body = "\n".join(" | ".join((c or "").strip() for c in row) for row in rows if row)
                 if body.strip():
                     elements.append(Element(doc_id, page_no, Modality.TABLE, body, metadata={**meta, "el": el}))
