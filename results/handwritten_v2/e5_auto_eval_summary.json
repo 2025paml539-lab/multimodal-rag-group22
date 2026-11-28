@@ -1,0 +1,9 @@
+{
+  "questions": 8,
+  "judge_invalid_replies": 0,
+  "compared": 8,
+  "agreement": 1.0,
+  "kappa": null,
+  "judge_says_ok_golden_says_wrong": [],
+  "judge_says_wrong_golden_says_ok": []
+}
