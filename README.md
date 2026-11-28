@@ -37,7 +37,7 @@ under 6 s; the same answer on 5+ repeated runs; fewer tokens than a naive "send 
 |---|---|
 | [`PROJECT_PLAN.md`](PROJECT_PLAN.md) | Roles, rubric mapping, timeline, lab session budget, demo plan, risks, submission checklist |
 | [`docs/LAB_SETUP.md`](docs/LAB_SETUP.md) | Step-by-step lab setup for every member, with the errors we already met |
-| `scripts/lab_start.sh` | Start-of-session script (starts Ollama on the GPU, pulls models). Not yet tested |
+| `scripts/lab_start.sh` | Start-of-session script (starts Ollama on the GPU, pulls models). Used in every lab session since S2 |
 
 ## Run the offline tests (any laptop, no GPU)
 
@@ -72,25 +72,20 @@ Folders other than `docs/` and `scripts/` are created as the work is done.
 
 Lab software that works with the lab's driver 535: PyTorch 2.8.0+cu128, Ollama 0.12.6. Do not upgrade either.
 
-## Status (22 Nov 2026) and owners
-
-Details and due dates per person are in [`PROJECT_PLAN.md`](PROJECT_PLAN.md) section 0.
-
+## Status (28 Nov 2026) and owners
+Dated history by branch: [`docs/WORK_LOG.md`](docs/WORK_LOG.md). Real lab results: [`results/README.md`](results/README.md).
 - [x] Instructor approval of corpus and scenario (Kishore)
-- [x] Lab notebook created, GPU verified: A100, PyTorch, Ollama at 121 tokens/s with qwen3:8b (Kishore)
-- [x] Repository, project plan and lab guide (Kishore)
-- [x] Core code skeleton `src/rag/`: elements, chunking, hybrid retrieval, memory, LLM client. 33 offline tests pass (Kishore)
-- [ ] PDF/PPT parsers checked on real documents: written, not yet tested, lab session S2 on Mon 23 (Kishore)
-- [ ] Corpus of 100+ public documents, `corpus/manifest.csv`, inventory, hashes (Vishruth)
-- [ ] Metadata ontology `ontology.yaml` (Vishruth)
-- [ ] Real embeddings and the vector index on the lab GPU, E1 and E2 (Kishore)
-- [ ] Retrieval experiments E3 and memory demo E4 (Kishore)
-- [ ] Guardrails and DoS limiter, E9 (Bhavani)
-- [ ] Golden set of 30+ questions with dev/test split, 8 from each member (Satya, everyone)
-- [ ] Evaluation, automatic evaluation, prompt ablation, self-improving loop: E5, E7, E8 (Satya)
-- [ ] Non-functional benchmark E6 (Bhavani)
-- [ ] HLD and LLD diagrams, constraint map (Bhavani)
-- [ ] Report, demo video, contribution statement (Bhavani assembles, everyone reviews)
+- [x] Lab environment (A100, PyTorch 2.8.0+cu128, Ollama 0.12.6) and the lab runbook (Kishore)
+- [x] Core code `src/rag/`, 90+ offline tests (Kishore)
+- [x] Parsers on real documents, OCR, embeddings, saved index: 166 of 167 files, 20,339 chunks (Kishore)
+- [x] Corpus manifest, ontology, metadata, inventory (Vishruth)
+- [x] 30 golden questions, dev and test split (all four members; checked against the PDF pages)
+- [x] Metrics, 5-style prompt ablation, automatic evaluation, self-improving loop: E5, E5B, E7, E8 (code by Kishore in Satya's area)
+- [x] Guardrails, DoS limiter, E9; HLD, LLD, constraint map (code by Kishore in Bhavani's area)
+- [x] Non-functional benchmark E6, retrieval E3, chunking E2, memory E4: real lab runs in `results/final_30/`
+- [ ] E10 integrated demonstration and executed notebook (run in the lab)
+- [ ] Demo app, 8 to 10 minute video, Part A report (draft in `report/REPORT_DRAFT.md`), lessons learned, signed contribution statement
+- [ ] Part B (each member, own repository)
 
 ## Rules we follow
 

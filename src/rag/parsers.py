@@ -1,9 +1,8 @@
 """PDF and PPT parsing into Elements.
 
-STATUS: written but NOT YET TESTED on real documents. It needs PyMuPDF and
-python-pptx, which are installed in the lab (requirements-lab.txt). First real
-run: lab session S2. The function names and return types are the interface the
-rest of the code depends on, so they should not change.
+STATUS: run on the real corpus in the BITS lab (166 of 167 files parsed; D147 fails with a PyMuPDF error).
+It needs PyMuPDF and python-pptx (requirements-lab.txt). The function names and return types are the
+interface the rest of the code depends on, so they should not change.
 
 OCR is a separate, pluggable step: `ocr` is any function image_path -> text.
 """

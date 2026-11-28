@@ -61,3 +61,16 @@ Authorship: commits for the Satya-area (B4) code are under Kishore's identity, a
 4. Bhavani: guardrails (B5), design docs, demo, report assembly.
 5. Send the reminder email to the instructor, and the question about the extra documents.
 6. Everyone: lessons learned and contribution statement before 30 Nov 11:59 PM.
+
+## Update, Saturday 28 Nov 2026, evening (from `git log` and the lab output pasted in chat)
+| Branch / PR | What |
+|---|---|
+| `kishore/ingest-speed`, `ingest-parallel`, `table-speed` (#12, #13, #14) | Lab was slow. Measured: a per-cell table call took 102 of 112 s on a 70-page PDF; the lab shows 256 CPUs but allows 7, so libraries over-threaded (pinning with taskset took one PDF from 68.3 s to 4.8 s); OCR 9 to 15 s per call. Parallel ingest, faster table reading. |
+| `satya/ablation-autoeval`, `satya/metric-normalisation` (#15, #16) | 5-style ablation, LLM-as-judge, number-word and rupee-mark normalisation after 4 of 5 "wrong" answers proved correct. |
+| `kishore/synthetic-golden`, `kishore/title-context` (#18, #19) | 60 synthetic-deck questions. They exposed table recall 0.0, fixed by indexing each chunk with its document title (recall 1.0). |
+| `kishore/consistency`, `kishore/golden-team`, `kishore/golden-more` (#20 to #22) | Retrieval consistency measured. 30 golden questions, each checked against its PDF page. |
+| `results/lab-s3`, `results/lab-final`, `results/lab-e2e4` | Real lab results, final run on 30 questions. |
+| `kishore/report-draft`, `kishore/memory-demo` | Report draft; two-conversation memory demo; scope check fixed after it wrongly refused 5 of the 30 real questions. |
+| `kishore/e10-docs` (this branch) | Refreshed stale docs; `scripts/e10_demo.py`; `notebooks/part_a_demo.ipynb`. |
+
+Still open: E10 run in the lab, notebook execution, demo app, video, report, lessons, contribution statement, Part B.

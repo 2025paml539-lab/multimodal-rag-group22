@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Start of every lab session. Safe to run more than once.
 # Usage: bash scripts/lab_start.sh [model ...]   e.g. bash scripts/lab_start.sh qwen3:8b gpt-oss:20b
-# NOT YET TESTED: first real use is lab session S2.
+# Used in every lab session since S2.
 
 OLLAMA="$HOME/ollama012/bin/ollama"
 export OLLAMA_MODELS=/tmp/ollama_models        # /tmp is wiped on restart, models are pulled again
