@@ -1,0 +1,6 @@
+{%- macro context(hits) -%}
+{%- for h in hits %}
+[{{ h.element.doc_id }}, p.{{ h.element.page }}] ({{ h.element.modality.value }})
+{{ h.element.text }}
+{%- endfor %}
+{%- endmacro -%}

@@ -1,0 +1,8 @@
+{% from "_context.j2" import context %}Answer the question using the context. Cite the document and page as [document, p.N].
+If the answer is not in the context, reply exactly: Not found in the documents.
+
+Context:
+{{ context(hits) }}
+
+Question: {{ question }}
+Answer:
