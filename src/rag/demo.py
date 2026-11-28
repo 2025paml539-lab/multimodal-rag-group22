@@ -31,6 +31,28 @@ SAMPLES = [
 ]
 
 
+def demo_options(root: Path) -> List[tuple]:
+    """(label, question) pairs for the notebook dropdown: the 8 demo steps, all golden questions, then the
+    guardrail test cases. Labels show the gold answer or the expected verdict so the presenter can compare live."""
+    root = Path(root)
+    opts = [(f"Demo {i}: {q}", q) for i, q in enumerate(SAMPLES, 1)]
+    for path in sorted((root / "eval").glob("golden_*.jsonl")):
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                g = json.loads(line)
+                opts.append((f"{g['id']} ({g['modality']}, gold: {g['answer']}, {g['doc_id']} p.{g['page']}): {g['question']}",
+                             g["question"]))
+    guard = root / "eval" / "guardrail_tests.jsonl"
+    if guard.exists():
+        for line in guard.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                c = json.loads(line)
+                if c["question"].strip():  # the blank-input case cannot be asked from a text box
+                    q = c["question"]
+                    opts.append((f"Guardrail (expect {c['expected']}): {q[:90] + '...' if len(q) > 90 else q}", q))
+    return opts
+
+
 @dataclass
 class System:
     index: HybridIndex
@@ -100,7 +122,8 @@ def build_system(index_path: str, embedder: str = "auto", llm: str = "none", mod
 def to_markdown(r: Dict[str, Any]) -> str:
     lines = [f"**Pipeline stage:** {r['stage']}  |  **Verdict:** {r['category']}" + (f" ({r['reason']})" if r.get("reason") and r['category'] != 'ok' else ""),
              f"**Time:** {r['seconds']} s" + (f"  |  guardrails {r['guard_ms']} ms" if r.get("guard_ms") is not None else "")]
-    if r.get("question_used") and r.get("question_used") != "":
+    # Input-blocked questions never reach retrieval, so do not label them as sent to it.
+    if r.get("question_used") and r.get("stage") != "input":
         lines.append(f"**Question sent to retrieval:** {r['question_used']}")
     lines.append("")
     lines.append(f"### Answer\n{r['text']}" if r["text"] is not None else "### Answer\n(no language model selected: retrieval only)")
