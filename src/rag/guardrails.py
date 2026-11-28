@@ -47,7 +47,15 @@ class Verdict:
     reason: str = ""
 
 
-def check_input(question: str, has_history: bool = False, max_chars: int = MAX_QUESTION_CHARS) -> Verdict:
+def keyword_in_scope(question: str) -> bool:
+    """True if the question contains a banking or finance word. Coarse on its own: on the 30 golden questions it
+    wrongly rejected 5 (for example "review go to the Board"), so the pipeline also asks retrieval."""
+    low = (question or "").lower()
+    return any(w in low for w in _DOMAIN)
+
+
+def check_input(question: str, has_history: bool = False, max_chars: int = MAX_QUESTION_CHARS,
+                scope: bool = True) -> Verdict:
     """Block empty, oversized, injection, personal-data and out-of-scope questions.
     With conversation history a short follow-up ('and for the vehicle loan?') skips the scope test."""
     q = question or ""
@@ -61,10 +69,8 @@ def check_input(question: str, has_history: bool = False, max_chars: int = MAX_Q
     for name, p in _PII.items():
         if p.search(q):
             return Verdict(False, "personal_data", f"looks like {name}")
-    if not has_history:
-        low = q.lower()
-        if not any(w in low for w in _DOMAIN):
-            return Verdict(False, "out_of_scope", "no Indian banking or finance term found")
+    if scope and not has_history and not keyword_in_scope(q):
+        return Verdict(False, "out_of_scope", "no Indian banking or finance term found")
     return Verdict(True, "ok")
 
 
