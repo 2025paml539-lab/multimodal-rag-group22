@@ -76,7 +76,7 @@ class TestFusion(unittest.TestCase):
         idx.add(corpus())
         runs = [[h.element.element_id for h in idx.search("liability reported within 3 days", k=3)] for _ in range(5)]
         self.assertTrue(all(r == runs[0] for r in runs))
-        self.assertIn("rbi_fraud|p2|table|0", runs[0])
+        self.assertIn("rbi_fraud|p2|table|0|0", runs[0])
         self.assertEqual(len(idx), 4)
 
     def test_modes_return_hits(self):

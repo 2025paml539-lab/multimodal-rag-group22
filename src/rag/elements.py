@@ -41,7 +41,8 @@ class Element:
 
     @property
     def element_id(self) -> str:
-        return f"{self.doc_id}|p{self.page}|{self.modality.value}|{self.metadata.get('chunk', 0)}"
+        return (f"{self.doc_id}|p{self.page}|{self.modality.value}|"
+                f"{self.metadata.get('el', 0)}|{self.metadata.get('chunk', 0)}")
 
     @property
     def citation(self) -> str:
