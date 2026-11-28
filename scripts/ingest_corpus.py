@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from rag import ChunkConfig, HashEmbedder, HybridIndex, chunk_elements  # noqa: E402
 from rag.index import _element_from_dict, _element_to_dict  # noqa: E402
 from rag.parsers import parse_document  # noqa: E402
+from rag.registry import attach_metadata, load_registry  # noqa: E402
 
 CONFIGS = {"A": ChunkConfig(200, 40), "B": ChunkConfig(60, 10)}
 
@@ -35,6 +36,8 @@ def main() -> int:
     ap.add_argument("--config", choices=list(CONFIGS), default="A")
     ap.add_argument("--ocr", dest="ocr", action="store_true")
     ap.add_argument("--no-ocr", dest="ocr", action="store_false")
+    ap.add_argument("--manifest", default=str(ROOT / "corpus" / "manifest.csv"))
+    ap.add_argument("--doc-metadata", default=str(ROOT / "corpus" / "doc_metadata.csv"))
     ap.add_argument("--limit", type=int, default=0, help="only the first N files (smoke run)")
     ap.set_defaults(ocr=False)
     a = ap.parse_args()
@@ -45,6 +48,7 @@ def main() -> int:
     if not files:
         print("no PDF or PPTX files in", a.docs)
         return 1
+    registry = load_registry(a.manifest, a.doc_metadata)
     cache = Path(a.cache)
     (cache / "parsed").mkdir(parents=True, exist_ok=True)
     ocr = None
@@ -55,7 +59,9 @@ def main() -> int:
     elements, failed = [], []
     print(f"PARSE {len(files)} files (cache {cache})", flush=True)
     for i, f in enumerate(files, 1):
-        doc_id = Path(f).stem
+        stem = Path(f).stem
+        info = registry.get(stem, {"doc_id": stem})   # files not in the manifest keep their file name
+        doc_id = info["doc_id"]
         cached = cache / "parsed" / f"{doc_id}.json"
         if cached.exists():
             els = [_element_from_dict(d) for d in json.loads(cached.read_text(encoding="utf-8"))]
@@ -70,7 +76,7 @@ def main() -> int:
                 continue
             cached.write_text(json.dumps([_element_to_dict(e) for e in els], ensure_ascii=False), encoding="utf-8")
             tag = f"{time.perf_counter() - t:.1f}s"
-        elements += els
+        elements += attach_metadata(els, info)
         print(f"  [{i}/{len(files)}] {doc_id}: {dict(collections.Counter(e.modality.name for e in els))} {tag}", flush=True)
     chunks = chunk_elements(elements, CONFIGS[a.config])
     print(f"CHUNK config {a.config}: {len(elements)} elements -> {len(chunks)} chunks", flush=True)
