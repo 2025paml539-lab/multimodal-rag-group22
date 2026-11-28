@@ -1,0 +1,9 @@
+id,split,modality,correct,judge_ok,supported,answers_question,answer
+V-01,dev,text,1.0,1,1,1,"The customer must inform the bank about an unauthorized electronic transaction within three working days to have zero liability [D021, p.30]."
+V-02,test,text,1.0,1,1,1,"The bank must resolve a customer's complaint about an unauthorized electronic banking transaction within 90 days [D145, p.29]."
+V-03,dev,text,1.0,1,1,1,"The bank must credit the amount involved in an unauthorized transaction within 10 working days from the date of such notification by the customer [D126, p.42]."
+V-04,test,text,1.0,1,1,1,"The bank must activate an inoperative account within three working days while following the KYC guidelines [D021, p.65]."
+V-05,dev,table,1.0,1,1,1,"When a customer reports a system-level unauthorized transaction after a delay of four to seven working days, the maximum liability for a BSBD account is ₹5,000 [D083, p.15]."
+V-06,test,table,1.0,1,1,1,"The maximum liability for credit cards with a limit above Rs 5 lakh in the same delayed-reporting case is ₹25,000 [D053, p.29]."
+V-07,dev,image,0.0,1,1,1,"In the chart of Alpha Bank: Retail Loan Policy, the category with the highest value is Home loan [D149, p.4]."
+V-08,test,image,1.0,1,1,1,"The category with the highest value in the chart of Alpha Bank: KYC Guidelines is Politically exposed, with a value of 116 months between KYC refreshes [D159, p.2]."

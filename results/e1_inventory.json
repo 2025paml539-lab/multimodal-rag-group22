@@ -1,0 +1,44 @@
+{
+  "documents": 166,
+  "pages": 8307,
+  "elements": {
+    "text": 8306,
+    "table": 3288,
+    "image": 377
+  },
+  "chunks_config_A": {
+    "text": 15093,
+    "table": 4869,
+    "image": 377
+  },
+  "by_doc_type": {
+    "master_direction": {
+      "documents": 129,
+      "pages": 7909,
+      "text": 7909,
+      "table": 3087,
+      "image": 261
+    },
+    "annual_report": {
+      "documents": 12,
+      "pages": 197,
+      "text": 197,
+      "table": 128,
+      "image": 4
+    },
+    "slide_deck": {
+      "documents": 22,
+      "pages": 100,
+      "text": 100,
+      "table": 23,
+      "image": 22
+    },
+    "booklet_guide": {
+      "documents": 3,
+      "pages": 101,
+      "text": 100,
+      "table": 50,
+      "image": 90
+    }
+  }
+}

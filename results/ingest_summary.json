@@ -1,0 +1,21 @@
+{
+  "files": 167,
+  "failed": [
+    [
+      "D147",
+      "<pymupdf.mupdf.FzErrorArgument; proxy of <Swig Object of type 'mupdf::FzErrorArgument *' at 0x7f4c919410b0> >"
+    ]
+  ],
+  "elements": 11971,
+  "chunks": 20339,
+  "config": "A",
+  "embedder": "st",
+  "ocr": false,
+  "workers": 5,
+  "seconds": 80.6,
+  "by_modality": {
+    "TEXT": 15093,
+    "TABLE": 4869,
+    "IMAGE": 377
+  }
+}

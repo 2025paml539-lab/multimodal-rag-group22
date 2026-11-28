@@ -1,0 +1,6 @@
+style,n,correct,faithful,cited_ok,refused,input_tokens_mean,output_tokens_mean,latency_p50_s,latency_p95_s,consistency
+zero_shot,8,0.875,0.4583,1.0,0.0,1115.2,48.5,0.936,1.0,0.875
+fstring,8,0.875,0.625,0.625,0.0,1121.2,37,0.792,0.938,1.0
+three_shot,8,0.75,0.5,1.0,0.0,1305.2,19.1,0.689,0.874,0.75
+jinja2,8,0.875,0.625,1.0,0.0,1187.2,36.8,0.792,1.001,1.0
+create,8,0.625,1.0,1.0,0.0,1216.2,18.4,0.716,0.807,1.0

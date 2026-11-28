@@ -1,0 +1,475 @@
+nohup: ignoring input
+PARSE 167 files, 5 workers (cache /home/jovyan/rag_cache)
+  [1/167] D161: cached
+  [2/167] D149: cached
+  [3/167] D155: cached
+  [4/167] D159: cached
+  [5/167] D162: cached
+  [6/167] D153: cached
+  [7/167] D164: cached
+  [8/167] D150: cached
+  [9/167] D160: cached
+  [10/167] D158: cached
+  [11/167] D157: cached
+  [12/167] D156: cached
+  [13/167] D151: cached
+  [14/167] D154: cached
+  [15/167] D152: cached
+  [16/167] D163: cached
+  [17/167] D166: cached
+  [18/167] D165: cached
+  [19/167] D167: cached
+  [20/167] D168: cached
+  [21/167] D001: cached
+  [22/167] D003: cached
+  [23/167] D004: cached
+  [24/167] D005: cached
+  [25/167] D006: cached
+  [26/167] D007: cached
+  [27/167] D009: cached
+  [28/167] D008: cached
+  [29/167] D011: cached
+  [30/167] D010: cached
+  [31/167] D012: cached
+  [32/167] D013: cached
+  [33/167] D016: cached
+  [34/167] D014: cached
+  [35/167] D019: cached
+  [36/167] D020: 178.9s
+  [37/167] D015: 227.1s
+  [38/167] D002: 314.0s
+  [39/167] D022: 197.3s
+  [40/167] D024: 29.3s
+  [41/167] D023: 149.1s
+  [42/167] D017: 457.1s
+  [43/167] D021: 354.5s
+  [44/167] D026: 169.6s
+  [45/167] D018: 629.3s
+  [46/167] D025: 171.6s
+  [47/167] D029: 59.5s
+  [48/167] D031: 107.6s
+  [49/167] D030: 122.1s
+  [50/167] D028: 227.3s
+nohup: ignoring input
+PARSE 167 files, 5 workers (cache /home/jovyan/rag_cache)
+  [1/167] D149: cached
+  [2/167] D154: cached
+  [3/167] D155: cached
+  [4/167] D150: cached
+  [5/167] D151: cached
+  [6/167] D152: cached
+  [7/167] D153: cached
+  [8/167] D156: cached
+  [9/167] D157: cached
+  [10/167] D158: cached
+  [11/167] D159: cached
+  [12/167] D161: cached
+  [13/167] D160: cached
+  [14/167] D162: cached
+  [15/167] D163: cached
+  [16/167] D165: cached
+  [17/167] D166: cached
+  [18/167] D164: cached
+  [19/167] D167: cached
+  [20/167] D168: cached
+  [21/167] D001: cached
+  [22/167] D002: cached
+  [23/167] D003: cached
+  [24/167] D004: cached
+  [25/167] D005: cached
+  [26/167] D007: cached
+  [27/167] D008: cached
+  [28/167] D009: cached
+  [29/167] D006: cached
+  [30/167] D010: cached
+  [31/167] D011: cached
+  [32/167] D012: cached
+  [33/167] D013: cached
+  [34/167] D014: cached
+  [35/167] D016: cached
+  [36/167] D015: cached
+  [37/167] D017: cached
+  [38/167] D018: cached
+  [39/167] D019: cached
+  [40/167] D020: cached
+  [41/167] D021: cached
+  [42/167] D022: cached
+  [43/167] D023: cached
+  [44/167] D024: cached
+  [45/167] D026: cached
+  [46/167] D025: cached
+  [47/167] D028: cached
+  [48/167] D029: cached
+  [49/167] D030: cached
+  [50/167] D031: cached
+  [51/167] D033: 125.6s
+  [52/167] D035: 171.0s
+  [53/167] D037: 87.9s
+  [54/167] D038: 38.3s
+  [55/167] D034: 294.3s
+  [56/167] D040: 95.5s
+  [57/167] D032: 411.9s
+  [58/167] D027: 453.9s
+nohup: ignoring input
+PARSE 167 files, 5 workers (cache /home/jovyan/rag_cache)
+  [1/167] D149: cached
+  [2/167] D150: cached
+  [3/167] D151: cached
+  [4/167] D152: cached
+  [5/167] D153: cached
+  [6/167] D154: cached
+  [7/167] D155: cached
+  [8/167] D156: cached
+  [9/167] D157: cached
+  [10/167] D158: cached
+  [11/167] D159: cached
+  [12/167] D160: cached
+  [13/167] D161: cached
+  [14/167] D163: cached
+  [15/167] D164: cached
+  [16/167] D162: cached
+  [17/167] D165: cached
+  [18/167] D166: cached
+  [19/167] D167: cached
+  [20/167] D001: cached
+  [21/167] D168: cached
+  [22/167] D002: cached
+  [23/167] D003: cached
+  [24/167] D004: cached
+  [25/167] D005: cached
+  [26/167] D006: cached
+  [27/167] D007: cached
+  [28/167] D008: cached
+  [29/167] D009: cached
+  [30/167] D010: cached
+  [31/167] D011: cached
+  [32/167] D012: cached
+  [33/167] D014: cached
+  [34/167] D013: cached
+  [35/167] D015: cached
+  [36/167] D016: cached
+  [37/167] D017: cached
+  [38/167] D018: cached
+  [39/167] D019: cached
+  [40/167] D020: cached
+  [41/167] D021: cached
+  [42/167] D022: cached
+  [43/167] D024: cached
+  [44/167] D025: cached
+  [45/167] D023: cached
+  [46/167] D026: cached
+  [47/167] D028: cached
+  [48/167] D029: cached
+  [49/167] D027: cached
+  [50/167] D031: cached
+  [51/167] D030: cached
+  [52/167] D032: cached
+  [53/167] D033: cached
+  [54/167] D034: cached
+  [55/167] D035: cached
+  [56/167] D037: cached
+  [57/167] D038: cached
+  [58/167] D040: cached
+  [59/167] D036: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [60/167] D039: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [61/167] D043: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [62/167] D041: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [63/167] D042: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [64/167] D044: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [65/167] D045: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [66/167] D046: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [67/167] D047: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [68/167] D048: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [69/167] D049: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [70/167] D050: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [71/167] D051: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [72/167] D052: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [73/167] D053: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [74/167] D054: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [75/167] D055: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [76/167] D056: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [77/167] D058: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [78/167] D059: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [79/167] D060: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [80/167] D057: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [81/167] D061: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [82/167] D062: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [83/167] D063: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [84/167] D064: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [85/167] D065: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [86/167] D066: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [87/167] D067: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [88/167] D069: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [89/167] D068: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [90/167] D070: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [91/167] D071: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [92/167] D072: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [93/167] D073: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [94/167] D074: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [95/167] D075: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [96/167] D076: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [97/167] D077: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [98/167] D078: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [99/167] D079: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [100/167] D080: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [101/167] D081: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [102/167] D082: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [103/167] D083: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [104/167] D085: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [105/167] D086: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [106/167] D087: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [107/167] D084: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [108/167] D088: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [109/167] D089: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [110/167] D091: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [111/167] D092: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [112/167] D093: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [113/167] D094: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [114/167] D095: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [115/167] D090: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [116/167] D096: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [117/167] D097: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [118/167] D098: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [119/167] D099: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [120/167] D100: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [121/167] D102: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [122/167] D101: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [123/167] D103: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [124/167] D104: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [125/167] D105: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [126/167] D107: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [127/167] D106: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [128/167] D109: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [129/167] D108: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [130/167] D110: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [131/167] D111: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [132/167] D113: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [133/167] D112: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [134/167] D114: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [135/167] D116: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [136/167] D118: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [137/167] D117: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [138/167] D119: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [139/167] D120: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [140/167] D121: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [141/167] D122: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [142/167] D123: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [143/167] D124: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [144/167] D125: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [145/167] D126: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [146/167] D127: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [147/167] D128: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [148/167] D129: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [149/167] D131: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [150/167] D132: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [151/167] D133: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [152/167] D134: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [153/167] D135: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [154/167] D136: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [155/167] D137: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [156/167] D138: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [157/167] D139: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [158/167] D140: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [159/167] D115: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [160/167] D142: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [161/167] D141: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [162/167] D143: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [163/167] D144: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [164/167] D145: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [165/167] D146: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [166/167] D147: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+  [167/167] D148: FAILED RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')
+PARSED in 0s, 109 failed: [('D036', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D039', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D043', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D041', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D042', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D044', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D045', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D046', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D047', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D048', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D049', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D050', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D051', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D052', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D053', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D054', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D055', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D056', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D058', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D059', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D060', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D057', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D061', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D062', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D063', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D064', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D065', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D066', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D067', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D069', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D068', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D070', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D071', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D072', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D073', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D074', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D075', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D076', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D077', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D078', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D079', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D080', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D081', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D082', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D083', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D085', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D086', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D087', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D084', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D088', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D089', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D091', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D092', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D093', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D094', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D095', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D090', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D096', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D097', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D098', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D099', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D100', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D102', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D101', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D103', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D104', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D105', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D107', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D106', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D109', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D108', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D110', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D111', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D113', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D112', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D114', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D116', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D118', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D117', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D119', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D120', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D121', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D122', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D123', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D124', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D125', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D126', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D127', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D128', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D129', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D131', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D132', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D133', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D134', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D135', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D136', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D137', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D138', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D139', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D140', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D115', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D142', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D141', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D143', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D144', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D145', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D146', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D147', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')"), ('D148', "RuntimeError('PyMuPDF is not installed. In the lab run: pip install pymupdf (see docs/LAB_SETUP.md)')")]
+CHUNK config A: 3074 elements -> 5350 chunks
+Traceback (most recent call last):
+  File "/home/jovyan/multimodal-rag-group22/src/rag/embedding.py", line 14, in __init__
+    from sentence_transformers import SentenceTransformer
+ModuleNotFoundError: No module named 'sentence_transformers'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jovyan/multimodal-rag-group22/scripts/ingest_corpus.py", line 132, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/jovyan/multimodal-rag-group22/scripts/ingest_corpus.py", line 114, in main
+    emb = SentenceTransformerEmbedder(a.st_model)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/multimodal-rag-group22/src/rag/embedding.py", line 17, in __init__
+    raise RuntimeError("sentence-transformers is not installed. In the lab: "
+RuntimeError: sentence-transformers is not installed. In the lab: pip install -r requirements-lab.txt (never reinstall torch)
+nohup: ignoring input
+PARSE 167 files, 5 workers (cache /home/jovyan/rag_cache)
+  [1/167] D149: cached
+  [2/167] D150: cached
+  [3/167] D151: cached
+  [4/167] D155: cached
+  [5/167] D154: cached
+  [6/167] D156: cached
+  [7/167] D157: cached
+  [8/167] D152: cached
+  [9/167] D153: cached
+  [10/167] D158: cached
+  [11/167] D159: cached
+  [12/167] D160: cached
+  [13/167] D162: cached
+  [14/167] D163: cached
+  [15/167] D161: cached
+  [16/167] D164: cached
+  [17/167] D166: cached
+  [18/167] D165: cached
+  [19/167] D167: cached
+  [20/167] D168: cached
+  [21/167] D001: cached
+  [22/167] D003: cached
+  [23/167] D002: cached
+  [24/167] D005: cached
+  [25/167] D006: cached
+  [26/167] D004: cached
+  [27/167] D007: cached
+  [28/167] D009: cached
+  [29/167] D008: cached
+  [30/167] D011: cached
+  [31/167] D010: cached
+  [32/167] D012: cached
+  [33/167] D013: cached
+  [34/167] D014: cached
+  [35/167] D016: cached
+  [36/167] D017: cached
+  [37/167] D015: cached
+  [38/167] D018: cached
+  [39/167] D019: cached
+  [40/167] D020: cached
+  [41/167] D022: cached
+  [42/167] D024: cached
+  [43/167] D023: cached
+  [44/167] D021: cached
+  [45/167] D025: cached
+  [46/167] D026: cached
+  [47/167] D027: cached
+  [48/167] D029: cached
+  [49/167] D030: cached
+  [50/167] D028: cached
+  [51/167] D032: cached
+  [52/167] D031: cached
+  [53/167] D035: cached
+  [54/167] D033: cached
+  [55/167] D034: cached
+  [56/167] D037: cached
+  [57/167] D038: cached
+  [58/167] D040: cached
+  [59/167] D043: 0.5s
+  [60/167] D042: 1.6s
+  [61/167] D045: 0.4s
+  [62/167] D041: 2.7s
+  [63/167] D044: 2.7s
+  [64/167] D046: 1.4s
+  [65/167] D047: 0.8s
+  [66/167] D049: 0.4s
+  [67/167] D051: 0.5s
+  [68/167] D048: 1.9s
+  [69/167] D052: 1.7s
+  [70/167] D036: 6.6s
+  [71/167] D054: 4.4s
+  [72/167] D056: 1.2s
+  [73/167] D050: 8.4s
+  [74/167] D053: 7.0s
+  [75/167] D055: 6.0s
+  [76/167] D058: 2.1s
+  [77/167] D057: 2.4s
+  [78/167] D061: 0.7s
+  [79/167] D062: 2.0s
+  [80/167] D060: 3.7s
+  [81/167] D063: 2.0s
+  [82/167] D064: 1.2s
+  [83/167] D065: 1.7s
+  [84/167] D067: 1.5s
+  [85/167] D069: 1.0s
+  [86/167] D070: 0.3s
+  [87/167] D039: 20.3s
+  [88/167] D066: 3.7s
+  [89/167] D072: 1.5s
+  [90/167] D073: 2.1s
+  [91/167] D059: 10.3s
+  [92/167] D074: 0.9s
+  [93/167] D075: 0.4s
+  [94/167] D077: 0.4s
+  [95/167] D068: 6.0s
+  [96/167] D078: 1.4s
+  [97/167] D080: 0.4s
+  [98/167] D076: 2.5s
+  [99/167] D079: 2.4s
+  [100/167] D082: 1.7s
+  [101/167] D083: 4.2s
+  [102/167] D084: 4.3s
+  [103/167] D085: 3.9s
+  [104/167] D088: 0.6s
+  [105/167] D089: 0.4s
+  [106/167] D081: 8.6s
+  [107/167] D087: 3.6s
+  [108/167] D091: 1.3s
+  [109/167] D086: 5.2s
+  [110/167] D093: 0.4s
+  [111/167] D094: 0.4s
+  [112/167] D096: 0.4s
+  [113/167] D092: 2.0s
+  [114/167] D098: 0.4s
+  [115/167] D071: 15.8s
+  [116/167] D090: 5.5s
+  [117/167] D097: 1.4s
+  [118/167] D095: 2.2s
+  [119/167] D100: 1.2s
+  [120/167] D104: 1.2s
+  [121/167] D105: 1.2s
+  [122/167] D101: 4.2s
+  [123/167] D102: 4.4s
+  [124/167] D103: 4.3s
+  [125/167] D106: 1.7s
+  [126/167] D109: 0.7s
+  [127/167] D110: 0.8s
+  [128/167] D107: 1.6s
+  [129/167] D111: 0.6s
+  [130/167] D114: 0.6s
+  [131/167] D112: 1.4s
+  [132/167] D099: 8.3s
+  [133/167] D116: 1.0s
+  [134/167] D108: 3.5s
+  [135/167] D115: 1.6s
+  [136/167] D120: 0.4s
+  [137/167] D118: 1.4s
+  [138/167] D113: 3.7s
+  [139/167] D122: 0.4s
+  [140/167] D119: 1.9s
+  [141/167] D124: 0.4s
+  [142/167] D121: 2.3s
+  [143/167] D123: 1.4s
+  [144/167] D117: 3.3s
+  [145/167] D129: 1.2s
+  [146/167] D131: 1.1s
+  [147/167] D128: 3.9s
+  [148/167] D127: 4.4s
+  [149/167] D134: 0.6s
+  [150/167] D133: 1.2s
+  [151/167] D135: 0.7s
+  [152/167] D126: 6.6s
+  [153/167] D137: 0.5s
+  [154/167] D138: 0.6s
+  [155/167] D139: 0.9s
+  [156/167] D132: 4.9s
+  [157/167] D136: 2.2s
+  [158/167] D125: 8.3s
+  [159/167] D143: 0.1s
+  [160/167] D140: 1.1s
+  [161/167] D144: 0.1s
+  [162/167] D141: 1.1s
+  [163/167] D148: 0.3s
+  [164/167] D147: FAILED <pymupdf.mupdf.FzErrorArgument; proxy of <Swig Object of type 'mupdf::FzErrorArgument *' at 0x7f4c919410b0> >
+  [165/167] D142: 2.1s
+  [166/167] D145: 3.2s
+  [167/167] D146: 4.7s
+PARSED in 60s, 1 failed: [('D147', "<pymupdf.mupdf.FzErrorArgument; proxy of <Swig Object of type 'mupdf::FzErrorArgument *' at 0x7f4c919410b0> >")]
+CHUNK config A: 11971 elements -> 20339 chunks
+Loading weights:   0%|                                                                                                                                        | 0/103 [00:00<?, ?it/s]Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 103/103 [00:00<00:00, 8547.95it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+EMBED+INDEX 20339 chunks in 13.7s
+SAVED /home/jovyan/rag_index {"files": 167, "failed": [["D147", "<pymupdf.mupdf.FzErrorArgument; proxy of <Swig Object of type 'mupdf::FzErrorArgument *' at 0x7f4c919410b0> >"]], "elements": 11971, "chunks": 20339, "config": "A", "embedder": "st", "ocr": false, "workers": 5, "seconds": 80.6, "by_modality": {"TEXT": 15093, "TABLE": 4869, "IMAGE": 377}}

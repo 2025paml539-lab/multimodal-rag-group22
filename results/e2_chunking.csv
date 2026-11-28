@@ -1,0 +1,3 @@
+config,max_words,overlap,chunks,avg_words,recall,mrr,questions
+A,200,40,20339,147.7,0.875,0.5729,8
+B,60,10,50002,62.0,0.875,0.6667,8
