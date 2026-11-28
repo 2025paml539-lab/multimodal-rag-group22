@@ -1,0 +1,9 @@
+{% from "_context.j2" import context %}You answer questions about Indian banking documents using only the context below.
+Work in two steps. Step 1 (private): find the sentence, table row or chart label that contains the answer, and check which row, column or quarter the question asks for. Step 2: write only the final answer.
+The final answer must cite the document and page as [document, p.N]. If the answer is not in the context, reply exactly: Not found in the documents.
+
+Context:
+{{ context(hits) }}
+
+Question: {{ question }}
+Final answer:

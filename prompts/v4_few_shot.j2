@@ -1,0 +1,23 @@
+{% from "_context.j2" import context %}Answer using only the context. Cite the document and page as [document, p.N]. If the answer is not in the context, reply exactly: Not found in the documents.
+
+Example 1
+Context:
+[example_policy, p.2] (text)
+Customers must report an unauthorised transaction within 3 working days.
+Question: Within how many days must a customer report an unauthorised transaction?
+Answer: Within 3 working days [example_policy, p.2].
+
+Example 2
+Context:
+[example_table, p.5] (table)
+Loan type | Rate (% p.a.)
+Home loan | 8.6
+Question: What is the interest rate for a car loan?
+Answer: Not found in the documents.
+
+Now your turn.
+Context:
+{{ context(hits) }}
+
+Question: {{ question }}
+Answer:
