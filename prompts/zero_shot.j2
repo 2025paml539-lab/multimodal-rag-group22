@@ -1,0 +1,6 @@
+{% from "_context.j2" import context %}Context:
+{{ context(hits) }}
+
+Question: {{ question }}
+Answer the question from the context. Give the document and page as [document, p.N]. If the context does not contain the answer, say: Not found in the documents.
+Answer:

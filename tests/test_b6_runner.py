@@ -38,7 +38,7 @@ class TestRunner(unittest.TestCase):
             self.assertEqual(proc.returncode, 0, proc.stderr[-800:])
             res = d / "res"
             for name in ("e1_inventory.json", "e2_chunking.csv", "e3_retrieval.csv", "e4_transcript.md",
-                         "e5_answers.csv", "e6_benchmark.json", "e7_ablation.csv", "e8_iterations.md", "e9_guardrails.csv"):
+                         "e5_answers.csv", "e6_benchmark.json", "e7_ablation.csv", "e8_iterations.md", "e9_guardrails.csv", "e5_auto_eval.csv"):
                 self.assertTrue((res / name).exists(), name)
             e6 = json.loads((res / "e6_benchmark.json").read_text())
             self.assertEqual(e6["consistency_identical_answers"], 1.0)
