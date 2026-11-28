@@ -25,7 +25,7 @@ flowchart LR
     RET --> PR[prompts.render_prompt: Jinja2 template + ontology]
     PR --> LLM[llm.py: Ollama or hosted client]
     LLM --> GO[guardrails.guard_output: grounded, cited, else refusal]
-    GO --> A[Answer with [document, p.N]]
+    GO --> A["Answer with #91;document, p.N#93;"]
   end
   subgraph Eval["Evaluation (scripts/run_experiments.py)"]
     G[eval/golden_*.jsonl] --> EV[eval_metrics.py]
