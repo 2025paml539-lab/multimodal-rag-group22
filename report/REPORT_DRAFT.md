@@ -21,7 +21,7 @@ PCAM ZG516 Applied Generative AI, Assignment 2 Part A. Group 22: Nandhaluru Kish
 ## 5. Multimodal parsing and embeddings
 - PyMuPDF for text and tables, python-pptx for slides, RapidOCR for text inside images, `all-MiniLM-L6-v2` on the GPU for embeddings (`src/rag/parsers.py`, `ocr.py`, `embedding.py`).
 - Tables are rebuilt cell by cell because the library's own table text dropped spaces and decimal points ("8.6" became "86"). Found in lab session S2, fixed, and the fix was made 15 times faster after profiling.
-- **Chunking (E2, run before the title fix, 8 questions, `results/e2_chunking.csv`):** 200 words with 40 overlap gives 20,339 chunks, recall 0.875, MRR 0.573. 60 words with 10 overlap gives 50,002 chunks, recall 0.875, MRR 0.667. **To rerun** on the final index before quoting.
+- **Chunking (E2, 30 questions, final index, `final_30/e2_chunking.csv`):** 200 words with 40 overlap gives 20,339 chunks, recall@5 0.867, MRR 0.666. 60 words with 10 overlap gives 50,002 chunks, recall@5 0.900, MRR 0.593. Smaller chunks find the right page slightly more often, larger chunks rank it higher. Neither is clearly better.
 - **Embedding choice (TEAM):** MiniLM is small and fast. No second embedding model was compared.
 
 ## 6. Vector store, memory and retrieval
@@ -37,7 +37,7 @@ PCAM ZG516 Applied Generative AI, Assignment 2 Part A. Group 22: Nandhaluru Kish
 | Hybrid, text only | 0.900 | 0.661 |
 
   BM25 is best. Multimodal hybrid is not better than text-only on this set: only 2 of 30 questions are image-based.
-- **Memory (E4, `results/e4_transcript.md`):** short-term memory rewrites a follow-up into a stand-alone question. The demonstration we ran was weak: our scripted follow-up ("the next page of that document") could not be answered and the rewrite returned the question unchanged. Needs a better follow-up pair before the video.
+- **Memory (E4, `final_30/e4_transcript.md`):** short-term memory rewrites a follow-up into a stand-alone question. Two real two-turn conversations from verified tables: in conversation 2 the follow-up "And for bucket 3?" is answered correctly with memory (18%) and fails without it ("Not found in the documents."). In conversation 1 the answer without memory is also correct, but it cites a different document (D003, p.26), so it is right by luck.
 
 ## 7. HLD and LLD
 See `docs/HLD.md`, `docs/LLD.md`, `docs/constraint_map.md` (Mermaid diagrams, to render into the PDF).
@@ -77,7 +77,6 @@ See `docs/HLD.md`, `docs/LLD.md`, `docs/constraint_map.md` (Mermaid diagrams, to
 3. **A near-duplicate clause from another document (S-03).** The model answered "75%" from a different document; the gold answer is 80%. RBI documents repeat clauses with different numbers. Proposed fix: a re-ranker, or document-aware filters.
 4. **Chart labels and values separated by OCR (lab session S2).** OCR returned numbers and axis labels in different orders, so the model picked the wrong value for the third quarter. Fixed in the later runs by the title context for the synthetic decks; not retested on real charts.
 5. **D147 fails to parse** (PyMuPDF error), so the booklet with the most images is not in the index.
-6. **Follow-up memory demo failed** (section 6).
 - **Limits:** OCR covers few documents; only 2 image questions; one model (qwen3:8b); answer consistency 90%; the guardrail test cases were written by us.
 
 ## 12. Lessons learned (TEAM, each member their own paragraph)
@@ -87,3 +86,4 @@ Future work from the failure list: OCR for all documents, document-aware filters
 
 ## Appendix
 Lab environment: `results/lab_gpu.txt` (A100-SXM4-80GB, driver 535.309.01), `results/lab_models.txt`, `results/lab_packages.txt`. Run guide: `results/README.md`, `docs/LAB_RUNBOOK.md`.
+
