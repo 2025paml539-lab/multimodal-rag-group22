@@ -61,15 +61,18 @@ def parse_pdf(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = Non
     elements: List[Element] = []
     with fitz.open(path) as pdf:
         for page_no, page in enumerate(pdf, start=1):
+            el = 0  # running ordinal per page: keeps ids of several images/tables on one page distinct
             text = page.get_text("text").strip()
             if text:
-                elements.append(Element(doc_id, page_no, Modality.TEXT, text, metadata=dict(meta)))
+                elements.append(Element(doc_id, page_no, Modality.TEXT, text, metadata={**meta, "el": el}))
+                el += 1
 
             for table in page.find_tables().tables:
                 rows = _table_rows(page, table)
                 body = "\n".join(" | ".join((c or "").strip() for c in row) for row in rows if row)
                 if body.strip():
-                    elements.append(Element(doc_id, page_no, Modality.TABLE, body, metadata=dict(meta)))
+                    elements.append(Element(doc_id, page_no, Modality.TABLE, body, metadata={**meta, "el": el}))
+                    el += 1
 
             for n, img in enumerate(page.get_images(full=True)):
                 pix = fitz.Pixmap(pdf, img[0])
@@ -81,7 +84,8 @@ def parse_pdf(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = Non
                 pix.save(img_path)
                 ocr_text = ocr(img_path) if ocr else ""
                 elements.append(Element(doc_id, page_no, Modality.IMAGE, ocr_text,
-                                        image_path=img_path, metadata=dict(meta)))
+                                        image_path=img_path, metadata={**meta, "el": el}))
+                el += 1
     return elements
 
 
@@ -100,6 +104,7 @@ def parse_pptx(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = No
     elements: List[Element] = []
     for slide_no, slide in enumerate(Presentation(path).slides, start=1):
         texts = []
+        el = 0  # running ordinal per slide (see parse_pdf)
         for n, shape in enumerate(slide.shapes):
             if shape.has_text_frame and shape.text_frame.text.strip():
                 texts.append(shape.text_frame.text.strip())
@@ -107,15 +112,17 @@ def parse_pptx(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = No
                 rows = [[cell.text for cell in row.cells] for row in shape.table.rows]
                 body = "\n".join(" | ".join(r) for r in rows)
                 if body.strip():
-                    elements.append(Element(doc_id, slide_no, Modality.TABLE, body, metadata=dict(meta)))
+                    elements.append(Element(doc_id, slide_no, Modality.TABLE, body, metadata={**meta, "el": el}))
+                    el += 1
             if shape.shape_type == MSO_SHAPE_TYPE.PICTURE:
                 img_path = str(out_dir / f"{doc_id}_s{slide_no}_i{n}.{shape.image.ext}")
                 Path(img_path).write_bytes(shape.image.blob)
                 ocr_text = ocr(img_path) if ocr else ""
                 elements.append(Element(doc_id, slide_no, Modality.IMAGE, ocr_text,
-                                        image_path=img_path, metadata=dict(meta)))
+                                        image_path=img_path, metadata={**meta, "el": el}))
+                el += 1
         if texts:
-            elements.append(Element(doc_id, slide_no, Modality.TEXT, "\n".join(texts), metadata=dict(meta)))
+            elements.append(Element(doc_id, slide_no, Modality.TEXT, "\n".join(texts), metadata={**meta, "el": el}))
     return elements
 
 

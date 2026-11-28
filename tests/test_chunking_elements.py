@@ -7,7 +7,7 @@ class TestElement(unittest.TestCase):
     def test_valid_element_and_citation(self):
         e = Element("rbi_card_2024", 3, Modality.TEXT, "Liability is zero.")
         self.assertEqual(e.citation, "rbi_card_2024, p.3")
-        self.assertEqual(e.element_id, "rbi_card_2024|p3|text|0")
+        self.assertEqual(e.element_id, "rbi_card_2024|p3|text|0|0")
 
     def test_rejects_bad_page_empty_text_and_missing_doc(self):
         with self.assertRaises(ValueError):

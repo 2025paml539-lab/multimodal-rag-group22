@@ -26,6 +26,8 @@ import numpy as np  # noqa: E402
 from rag import (ChunkConfig, ConversationMemory, FakeLLMClient, HashEmbedder, HybridIndex,  # noqa: E402
                  OllamaClient, chunk_elements, count_tokens)
 from rag import parsers  # noqa: E402
+from rag.embedding import SentenceTransformerEmbedder  # noqa: E402
+from rag.ocr import rapid_ocr  # noqa: E402
 
 QUESTIONS = [  # (kind, question) written for the 4 sample documents made for this test
     ("text", "What is the minimum credit score for unsecured personal loans?"),
@@ -45,30 +47,9 @@ Question: {question}
 Answer:"""
 
 
-class SentenceTransformerEmbedder:
-    """Real embedding model on the GPU. Rows are L2-normalised, as HybridIndex expects."""
-
-    def __init__(self, name: str):
-        from sentence_transformers import SentenceTransformer
-        import torch
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = SentenceTransformer(name, device=self.device)
-        self.name = name
-
-    def embed(self, texts):
-        return np.asarray(self.model.encode(list(texts), normalize_embeddings=True,
-                                            convert_to_numpy=True, batch_size=64), dtype=np.float32)
-
-
-def load_ocr():
+def _load_ocr():
     try:
-        from rapidocr_onnxruntime import RapidOCR
-        engine = RapidOCR()
-
-        def ocr(path: str) -> str:
-            res, _ = engine(path)
-            return " ".join(r[1] for r in res) if res else ""
-        return ocr
+        return rapid_ocr()
     except Exception as e:  # OCR is optional for this test
         print("  OCR not available:", e)
         return None
@@ -92,7 +73,7 @@ def main() -> int:
         return 1
 
     print("1. PARSE")
-    ocr, elements = load_ocr(), []
+    ocr, elements = _load_ocr(), []
     for f in files:
         doc_id = Path(f).stem
         els = parsers.parse_document(f, doc_id, os.path.join(a.images, doc_id), ocr)

@@ -7,8 +7,11 @@ plugs in a real sentence-embedding model without changing anything else.
 
 from __future__ import annotations
 
+import json
 import math
 import re
+from dataclasses import asdict
+from pathlib import Path
 from collections import Counter
 from typing import Any, Dict, Iterable, List, Optional, Protocol, Sequence
 
@@ -154,12 +157,62 @@ class HybridIndex:
     def __len__(self) -> int:
         return len(self.bm25.elements)
 
+    def save(self, directory: str) -> None:
+        save_index(self, directory)
+
+    @classmethod
+    def load(cls, directory: str, embedder: Embedder, per_list: int = 20) -> "HybridIndex":
+        return load_index(directory, embedder, per_list)
+
     def search(self, query: str, k: int = 5, filters=None, modalities=None, mode: str = "hybrid") -> List[Hit]:
         if mode not in ("hybrid", "bm25", "dense"):
             raise ValueError(f"mode must be hybrid, bm25 or dense, got {mode!r}")
+        if mode == "bm25":   # single list: return it directly so E3 reports true BM25 scores
+            return self.bm25.search(query, k, filters, modalities)
+        if mode == "dense":  # true cosine scores, not 1/(60+rank)
+            return self.dense.search(query, k, filters, modalities)
         lists = []
         if mode in ("hybrid", "bm25"):
             lists.append(self.bm25.search(query, self.per_list, filters, modalities))
         if mode in ("hybrid", "dense"):
             lists.append(self.dense.search(query, self.per_list, filters, modalities))
         return reciprocal_rank_fusion(lists, top=k)
+
+
+def _element_to_dict(e: Element) -> Dict[str, Any]:
+    d = asdict(e)
+    d["modality"] = e.modality.value
+    return d
+
+
+def _element_from_dict(d: Dict[str, Any]) -> Element:
+    return Element(d["doc_id"], d["page"], Modality(d["modality"]), d["text"],
+                   image_path=d.get("image_path"), metadata=d.get("metadata") or {})
+
+
+def save_index(index: "HybridIndex", directory: str) -> None:
+    """Write elements.json and dense.npy. BM25 statistics are rebuilt on load (cheap, deterministic)."""
+    out = Path(directory)
+    out.mkdir(parents=True, exist_ok=True)
+    elements = index.bm25.elements
+    (out / "elements.json").write_text(
+        json.dumps([_element_to_dict(e) for e in elements], ensure_ascii=False), encoding="utf-8")
+    matrix = index.dense._matrix
+    if matrix is not None:
+        np.save(out / "dense.npy", matrix)
+
+
+def load_index(directory: str, embedder: Embedder, per_list: int = 20) -> "HybridIndex":
+    """Rebuild a HybridIndex from save_index output without re-embedding the documents.
+    The embedder is only used to embed queries, so it must be the same model that built the index."""
+    src = Path(directory)
+    elements = [_element_from_dict(d) for d in json.loads((src / "elements.json").read_text(encoding="utf-8"))]
+    idx = HybridIndex(embedder, per_list)
+    idx.bm25.add(elements)
+    idx.dense.elements = list(elements)
+    dense_file = src / "dense.npy"
+    if dense_file.exists():
+        idx.dense._matrix = np.load(dense_file)
+        if len(idx.dense._matrix) != len(elements):
+            raise ValueError("dense.npy and elements.json have different lengths: index is corrupt")
+    return idx
