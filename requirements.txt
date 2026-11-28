@@ -1,0 +1,6 @@
+# Used by Streamlit Community Cloud and by anyone running app/streamlit_app.py. The lab uses requirements-lab.txt.
+streamlit>=1.36
+pandas
+numpy
+jinja2
+pyyaml

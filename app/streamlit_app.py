@@ -44,8 +44,10 @@ if page == "Ask (live demo)":
     st.title("Ask the bank documents")
     st.caption("Indian banking regulation. Every answer must cite a document and page, or refuse.")
     index_path = st.sidebar.text_input("Index folder", str(ROOT / "demo_index"))
+    has_index = (Path(index_path) / "elements.json").exists()
     mode = st.sidebar.selectbox("Answer source", ["Retrieval only (no model)", "Live: Ollama on this machine",
-                                                  "Live: hosted open-weight endpoint (env vars)", "Replay answers recorded in the lab"])
+                                                  "Live: hosted open-weight endpoint (env vars)", "Replay answers recorded in the lab"],
+                                index=0 if has_index else 3)  # no downloaded index (for example on Streamlit Cloud): open on the replay
     model = st.sidebar.text_input("Ollama model", "qwen3:8b")
     host = st.sidebar.text_input("Ollama host", "http://localhost:11434")
     style = st.sidebar.selectbox("Prompt style", STYLES, index=STYLES.index("create"))
