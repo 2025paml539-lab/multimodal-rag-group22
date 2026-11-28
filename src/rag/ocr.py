@@ -1,8 +1,30 @@
 """OCR for text inside images (charts, scanned tables). Returns an OcrFn: image_path -> str."""
 from __future__ import annotations
+import os
 from typing import Callable
 
 OcrFn = Callable[[str], str]
+
+
+def _limit_threads() -> None:
+    """RapidOCR creates its ONNX sessions with no thread limit. In a container that shares a large host, that can
+    mean far more threads than the 6 CPUs we are allowed. RAG_ORT_THREADS sets the limit (default 4)."""
+    n = int(os.environ.get("RAG_ORT_THREADS", "4"))
+    if n <= 0:
+        return
+    try:
+        from rapidocr_onnxruntime import utils
+        original = utils.SessionOptions
+
+        def limited():
+            opts = original()
+            opts.intra_op_num_threads = n
+            opts.inter_op_num_threads = 1
+            return opts
+
+        utils.SessionOptions = limited
+    except Exception:
+        pass
 
 
 def rapid_ocr() -> OcrFn:
@@ -13,6 +35,7 @@ def rapid_ocr() -> OcrFn:
     except ImportError as e:
         raise RuntimeError("rapidocr-onnxruntime is not installed. In the lab: "
                            "pip install -r requirements-lab.txt") from e
+    _limit_threads()
     engine = RapidOCR()
 
     def ocr(path: str) -> str:

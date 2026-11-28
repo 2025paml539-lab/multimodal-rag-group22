@@ -10,6 +10,7 @@ OCR is a separate, pluggable step: `ocr` is any function image_path -> text.
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Callable, List, Optional
 
@@ -20,6 +21,18 @@ OcrFn = Callable[[str], str]
 
 def _missing(pkg: str, install: str) -> RuntimeError:
     return RuntimeError(f"{pkg} is not installed. In the lab run: pip install {install} (see docs/LAB_SETUP.md)")
+
+
+def _configure_layout() -> None:
+    """PyMuPDF 2.x can run an ONNX layout model inside find_tables(). On the lab CPU it was about 5 times slower
+    (21.7 s against 4.6 s for a 70-page RBI PDF) and found fewer tables. It is off unless RAG_PYMUPDF_LAYOUT=1."""
+    if os.environ.get("RAG_PYMUPDF_LAYOUT") == "1":
+        return
+    try:
+        import pymupdf
+        pymupdf.use_layout(False)
+    except Exception:
+        pass
 
 
 def _table_rows(page, table) -> List[List[str]]:
@@ -55,10 +68,12 @@ def parse_pdf(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = Non
     except ImportError:
         raise _missing("PyMuPDF", "pymupdf") from None
 
+    _configure_layout()
     meta = dict(metadata or {})
     out_dir = Path(image_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     elements: List[Element] = []
+    seen_images = set()  # an image used on several pages (logo, letterhead) is read once
     with fitz.open(path) as pdf:
         for page_no, page in enumerate(pdf, start=1):
             el = 0  # running ordinal per page: keeps ids of several images/tables on one page distinct
@@ -75,6 +90,9 @@ def parse_pdf(path: str, doc_id: str, image_dir: str, ocr: Optional[OcrFn] = Non
                     el += 1
 
             for n, img in enumerate(page.get_images(full=True)):
+                if img[0] in seen_images:
+                    continue
+                seen_images.add(img[0])
                 pix = fitz.Pixmap(pdf, img[0])
                 if pix.width < min_image_px or pix.height < min_image_px:
                     continue
