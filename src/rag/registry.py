@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Dict, List
 from .elements import Element
 
-META_FIELDS = ("doc_type", "topic", "sensitivity", "source", "date")
+META_FIELDS = ("doc_type", "topic", "sensitivity", "source", "date", "title")
 
 
 def load_registry(manifest_path: str, metadata_path: str) -> Dict[str, Dict[str, str]]:
@@ -27,7 +27,8 @@ def load_registry(manifest_path: str, metadata_path: str) -> Dict[str, Dict[str,
             doc_id = row["doc_id"]
             url = (row.get("url") or "").strip()
             stem = doc_id if url.lower().startswith("http") else Path(url).stem
-            info = {"doc_id": doc_id, **{k: (meta.get(doc_id, {}).get(k) or "") for k in META_FIELDS}}
+            info = {"doc_id": doc_id, "title": (row.get("title") or "").strip(),
+                    **{k: (meta.get(doc_id, {}).get(k) or "") for k in META_FIELDS if k != "title"}}
             reg[stem] = info
     return reg
 

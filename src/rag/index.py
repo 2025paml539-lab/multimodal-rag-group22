@@ -38,6 +38,14 @@ def matches(element: Element, filters: Optional[Dict[str, Any]], modalities: Opt
     return True
 
 
+def searchable_text(el: Element) -> str:
+    """Text that is indexed: the document title in front of the chunk. A table or chart slide does not repeat the
+    deck name, so without it a question that names the document ranks the title slide instead (lab S3: table
+    recall 0.0 on the synthetic decks). The Element text itself is not changed."""
+    title = (el.metadata or {}).get("title")
+    return f"{title}. {el.text}" if title else el.text
+
+
 class BM25Index:
     """Okapi BM25 over element text."""
 
@@ -50,7 +58,7 @@ class BM25Index:
 
     def add(self, elements: Sequence[Element]) -> None:
         for el in elements:
-            toks = tokenise(el.text)
+            toks = tokenise(searchable_text(el))
             self.elements.append(el)
             self._tf.append(Counter(toks))
             self._len.append(len(toks))
@@ -110,7 +118,7 @@ class DenseIndex:
     def add(self, elements: Sequence[Element]) -> None:
         if not elements:
             return
-        vecs = self.embedder.embed([e.text for e in elements])
+        vecs = self.embedder.embed([searchable_text(e) for e in elements])
         self._matrix = vecs if self._matrix is None else np.vstack([self._matrix, vecs])
         self.elements.extend(elements)
 
