@@ -6,7 +6,9 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence
 from .elements import Hit, Modality
 from .index import HybridIndex
 from .llm import LLMClient
-from .prompts import render_prompt
+from .guardrails import RateLimiter, check_input, guard_output
+from .memory import ConversationMemory
+from .prompts import REFUSAL, render_prompt
 
 
 def normalise_answer(variant: str, text: str) -> str:
@@ -39,3 +41,28 @@ def answer_question(question: str, index: HybridIndex, llm: LLMClient, variant: 
     return {"answer": normalise_answer(variant, res.text), "raw": res.text, "hits": list(hits), "prompt": prompt,
             "prompt_words": len(prompt.split()), "input_tokens": res.input_tokens,
             "output_tokens": res.output_tokens, "retrieve_s": t1 - t0, "total_s": t2 - t0}
+
+
+def answer_with_guardrails(question: str, index: HybridIndex, llm: LLMClient, limiter: RateLimiter,
+                           session_id: str = "default", memory: Optional[ConversationMemory] = None,
+                           variant: str = "v2_citation_rules", **kwargs: Any) -> Dict[str, Any]:
+    """The full query path of the brief (3.6): DoS and input guardrail -> memory rewrite -> retrieval -> prompt
+    -> LLM -> grounded, cited answer -> output guardrail. A blocked step returns the reason and the refusal text."""
+    t0 = time.perf_counter()
+    gate = limiter.allow(session_id)
+    if not gate.allowed:
+        return {"text": REFUSAL, "stage": "dos", "verdict": gate, "guard_s": time.perf_counter() - t0}
+    verdict = check_input(question, has_history=bool(memory and len(memory)))
+    if not verdict.allowed:
+        return {"text": REFUSAL, "stage": "input", "verdict": verdict, "guard_s": time.perf_counter() - t0}
+    guard_in = time.perf_counter() - t0
+    standalone = memory.standalone_question(question, llm) if memory else question
+    res = answer_question(standalone, index, llm, variant, **kwargs)
+    t1 = time.perf_counter()
+    text, out_verdict = guard_output(res["answer"], res["hits"], standalone)
+    guard_s = guard_in + (time.perf_counter() - t1)
+    if memory is not None:
+        memory.add(question, text)
+    return {"text": text, "stage": "output", "verdict": out_verdict, "question_used": standalone,
+            "hits": res["hits"], "raw_answer": res["answer"], "input_tokens": res["input_tokens"],
+            "output_tokens": res["output_tokens"], "guard_s": guard_s, "total_s": time.perf_counter() - t0}
