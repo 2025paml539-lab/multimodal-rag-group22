@@ -77,7 +77,6 @@ See `docs/HLD.md`, `docs/LLD.md`, `docs/constraint_map.md` (Mermaid diagrams, to
 3. **A near-duplicate clause from another document (S-03).** The model answered "75%" from a different document; the gold answer is 80%. RBI documents repeat clauses with different numbers. Proposed fix: a re-ranker, or document-aware filters.
 4. **Chart labels and values separated by OCR (lab session S2).** OCR returned numbers and axis labels in different orders, so the model picked the wrong value for the third quarter. Fixed in the later runs by the title context for the synthetic decks; not retested on real charts.
 5. **D147 fails to parse** (PyMuPDF error), so the booklet with the most images is not in the index.
-6. **Follow-up memory demo failed** (section 6).
 - **Limits:** OCR covers few documents; only 2 image questions; one model (qwen3:8b); answer consistency 90%; the guardrail test cases were written by us.
 
 ## 12. Lessons learned (TEAM, each member their own paragraph)
