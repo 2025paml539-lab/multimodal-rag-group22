@@ -1,0 +1,60 @@
+{"id":"SAMPLE-Q001","question":"In Alpha Bank: Retail Loan Policy, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D149","page":2,"split":"dev"}
+{"id":"SAMPLE-Q002","question":"In Alpha Bank: Retail Loan Policy, what is the interest rate for Personal loan?","modality":"table","answer":"10.8","doc_id":"D149","page":3,"split":"test"}
+{"id":"SAMPLE-Q003","question":"In the chart of Alpha Bank: Retail Loan Policy, which category has the highest value?","modality":"image","answer":"Education loan","doc_id":"D149","page":4,"split":"dev"}
+{"id":"SAMPLE-Q004","question":"In Bharat Union Bank: Retail Loan Policy, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D150","page":2,"split":"test"}
+{"id":"SAMPLE-Q005","question":"In Bharat Union Bank: Retail Loan Policy, what is the interest rate for Personal loan?","modality":"table","answer":"13.7","doc_id":"D150","page":3,"split":"dev"}
+{"id":"SAMPLE-Q006","question":"In the chart of Bharat Union Bank: Retail Loan Policy, which category has the highest value?","modality":"image","answer":"Personal loan","doc_id":"D150","page":4,"split":"test"}
+{"id":"SAMPLE-Q007","question":"In Coastal Bank: Retail Loan Policy, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D151","page":2,"split":"dev"}
+{"id":"SAMPLE-Q008","question":"In Coastal Bank: Retail Loan Policy, what is the interest rate for Personal loan?","modality":"table","answer":"11.4","doc_id":"D151","page":3,"split":"test"}
+{"id":"SAMPLE-Q009","question":"In the chart of Coastal Bank: Retail Loan Policy, which category has the highest value?","modality":"image","answer":"Home loan","doc_id":"D151","page":4,"split":"dev"}
+{"id":"SAMPLE-Q010","question":"In Deccan Bank: Retail Loan Policy, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D152","page":2,"split":"test"}
+{"id":"SAMPLE-Q011","question":"In Deccan Bank: Retail Loan Policy, what is the interest rate for Personal loan?","modality":"table","answer":"7.7","doc_id":"D152","page":3,"split":"dev"}
+{"id":"SAMPLE-Q012","question":"In the chart of Deccan Bank: Retail Loan Policy, which category has the highest value?","modality":"image","answer":"Education loan","doc_id":"D152","page":4,"split":"test"}
+{"id":"SAMPLE-Q013","question":"In Eastern Bank: Retail Loan Policy, above what amount in INR lakh is a second approver required?","modality":"text","answer":"75","doc_id":"D153","page":2,"split":"dev"}
+{"id":"SAMPLE-Q014","question":"In Eastern Bank: Retail Loan Policy, what is the interest rate for Personal loan?","modality":"table","answer":"8.6","doc_id":"D153","page":3,"split":"test"}
+{"id":"SAMPLE-Q015","question":"In the chart of Eastern Bank: Retail Loan Policy, which category has the highest value?","modality":"image","answer":"Education loan","doc_id":"D153","page":4,"split":"dev"}
+{"id":"SAMPLE-Q016","question":"In Alpha Bank: Quarterly Fraud Report, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D154","page":2,"split":"test"}
+{"id":"SAMPLE-Q017","question":"In Alpha Bank: Quarterly Fraud Report, what is the reported cases for UPI fraud?","modality":"table","answer":"1,251","doc_id":"D154","page":3,"split":"dev"}
+{"id":"SAMPLE-Q018","question":"In the chart of Alpha Bank: Quarterly Fraud Report, which category has the highest value?","modality":"image","answer":"UPI fraud","doc_id":"D154","page":4,"split":"test"}
+{"id":"SAMPLE-Q019","question":"In Bharat Union Bank: Quarterly Fraud Report, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D155","page":2,"split":"dev"}
+{"id":"SAMPLE-Q020","question":"In Bharat Union Bank: Quarterly Fraud Report, what is the reported cases for UPI fraud?","modality":"table","answer":"1,301","doc_id":"D155","page":3,"split":"test"}
+{"id":"SAMPLE-Q021","question":"In the chart of Bharat Union Bank: Quarterly Fraud Report, which category has the highest value?","modality":"image","answer":"Card fraud","doc_id":"D155","page":4,"split":"dev"}
+{"id":"SAMPLE-Q022","question":"In Coastal Bank: Quarterly Fraud Report, above what amount in INR lakh is a second approver required?","modality":"text","answer":"75","doc_id":"D156","page":2,"split":"test"}
+{"id":"SAMPLE-Q023","question":"In Coastal Bank: Quarterly Fraud Report, what is the reported cases for UPI fraud?","modality":"table","answer":"1,382","doc_id":"D156","page":3,"split":"dev"}
+{"id":"SAMPLE-Q024","question":"In the chart of Coastal Bank: Quarterly Fraud Report, which category has the highest value?","modality":"image","answer":"UPI fraud","doc_id":"D156","page":4,"split":"test"}
+{"id":"SAMPLE-Q025","question":"In Deccan Bank: Quarterly Fraud Report, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D157","page":2,"split":"dev"}
+{"id":"SAMPLE-Q026","question":"In Deccan Bank: Quarterly Fraud Report, what is the reported cases for UPI fraud?","modality":"table","answer":"1,144","doc_id":"D157","page":3,"split":"test"}
+{"id":"SAMPLE-Q027","question":"In the chart of Deccan Bank: Quarterly Fraud Report, which category has the highest value?","modality":"image","answer":"UPI fraud","doc_id":"D157","page":4,"split":"dev"}
+{"id":"SAMPLE-Q028","question":"In Eastern Bank: Quarterly Fraud Report, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D158","page":2,"split":"test"}
+{"id":"SAMPLE-Q029","question":"In Eastern Bank: Quarterly Fraud Report, what is the reported cases for UPI fraud?","modality":"table","answer":"1,335","doc_id":"D158","page":3,"split":"dev"}
+{"id":"SAMPLE-Q030","question":"In the chart of Eastern Bank: Quarterly Fraud Report, which category has the highest value?","modality":"image","answer":"Card fraud","doc_id":"D158","page":4,"split":"test"}
+{"id":"SAMPLE-Q031","question":"In Alpha Bank: KYC Guidelines, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D159","page":2,"split":"dev"}
+{"id":"SAMPLE-Q032","question":"In Alpha Bank: KYC Guidelines, what is the KYC refresh period for Medium risk?","modality":"table","answer":"108","doc_id":"D159","page":3,"split":"test"}
+{"id":"SAMPLE-Q033","question":"In the chart of Alpha Bank: KYC Guidelines, which category has the highest value?","modality":"image","answer":"Politically exposed","doc_id":"D159","page":4,"split":"dev"}
+{"id":"SAMPLE-Q034","question":"In Bharat Union Bank: KYC Guidelines, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D160","page":2,"split":"test"}
+{"id":"SAMPLE-Q035","question":"In Bharat Union Bank: KYC Guidelines, what is the KYC refresh period for Medium risk?","modality":"table","answer":"73","doc_id":"D160","page":3,"split":"dev"}
+{"id":"SAMPLE-Q036","question":"In the chart of Bharat Union Bank: KYC Guidelines, which category has the highest value?","modality":"image","answer":"Politically exposed","doc_id":"D160","page":4,"split":"test"}
+{"id":"SAMPLE-Q037","question":"In Coastal Bank: KYC Guidelines, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D161","page":2,"split":"dev"}
+{"id":"SAMPLE-Q038","question":"In Coastal Bank: KYC Guidelines, what is the KYC refresh period for Medium risk?","modality":"table","answer":"67","doc_id":"D161","page":3,"split":"test"}
+{"id":"SAMPLE-Q039","question":"In the chart of Coastal Bank: KYC Guidelines, which category has the highest value?","modality":"image","answer":"Low risk","doc_id":"D161","page":4,"split":"dev"}
+{"id":"SAMPLE-Q040","question":"In Deccan Bank: KYC Guidelines, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D162","page":2,"split":"test"}
+{"id":"SAMPLE-Q041","question":"In Deccan Bank: KYC Guidelines, what is the KYC refresh period for Medium risk?","modality":"table","answer":"34","doc_id":"D162","page":3,"split":"dev"}
+{"id":"SAMPLE-Q042","question":"In the chart of Deccan Bank: KYC Guidelines, which category has the highest value?","modality":"image","answer":"High risk","doc_id":"D162","page":4,"split":"test"}
+{"id":"SAMPLE-Q043","question":"In Eastern Bank: KYC Guidelines, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D163","page":2,"split":"dev"}
+{"id":"SAMPLE-Q044","question":"In Eastern Bank: KYC Guidelines, what is the KYC refresh period for Medium risk?","modality":"table","answer":"72","doc_id":"D163","page":3,"split":"test"}
+{"id":"SAMPLE-Q045","question":"In the chart of Eastern Bank: KYC Guidelines, which category has the highest value?","modality":"image","answer":"High risk","doc_id":"D163","page":4,"split":"dev"}
+{"id":"SAMPLE-Q046","question":"In Alpha Bank: Quarterly Results, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D164","page":2,"split":"test"}
+{"id":"SAMPLE-Q047","question":"In Alpha Bank: Quarterly Results, what is the ratio for Net NPA?","modality":"table","answer":"19.6","doc_id":"D164","page":3,"split":"dev"}
+{"id":"SAMPLE-Q048","question":"In the chart of Alpha Bank: Quarterly Results, which category has the highest value?","modality":"image","answer":"CASA ratio","doc_id":"D164","page":4,"split":"test"}
+{"id":"SAMPLE-Q049","question":"In Bharat Union Bank: Quarterly Results, above what amount in INR lakh is a second approver required?","modality":"text","answer":"75","doc_id":"D165","page":2,"split":"dev"}
+{"id":"SAMPLE-Q050","question":"In Bharat Union Bank: Quarterly Results, what is the ratio for Net NPA?","modality":"table","answer":"20.8","doc_id":"D165","page":3,"split":"test"}
+{"id":"SAMPLE-Q051","question":"In the chart of Bharat Union Bank: Quarterly Results, which category has the highest value?","modality":"image","answer":"CASA ratio","doc_id":"D165","page":4,"split":"dev"}
+{"id":"SAMPLE-Q052","question":"In Coastal Bank: Quarterly Results, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D166","page":2,"split":"test"}
+{"id":"SAMPLE-Q053","question":"In Coastal Bank: Quarterly Results, what is the ratio for Net NPA?","modality":"table","answer":"30.3","doc_id":"D166","page":3,"split":"dev"}
+{"id":"SAMPLE-Q054","question":"In the chart of Coastal Bank: Quarterly Results, which category has the highest value?","modality":"image","answer":"CASA ratio","doc_id":"D166","page":4,"split":"test"}
+{"id":"SAMPLE-Q055","question":"In Deccan Bank: Quarterly Results, above what amount in INR lakh is a second approver required?","modality":"text","answer":"25","doc_id":"D167","page":2,"split":"dev"}
+{"id":"SAMPLE-Q056","question":"In Deccan Bank: Quarterly Results, what is the ratio for Net NPA?","modality":"table","answer":"18.4","doc_id":"D167","page":3,"split":"test"}
+{"id":"SAMPLE-Q057","question":"In the chart of Deccan Bank: Quarterly Results, which category has the highest value?","modality":"image","answer":"CASA ratio","doc_id":"D167","page":4,"split":"dev"}
+{"id":"SAMPLE-Q058","question":"In Eastern Bank: Quarterly Results, above what amount in INR lakh is a second approver required?","modality":"text","answer":"100","doc_id":"D168","page":2,"split":"test"}
+{"id":"SAMPLE-Q059","question":"In Eastern Bank: Quarterly Results, what is the ratio for Net NPA?","modality":"table","answer":"29.7","doc_id":"D168","page":3,"split":"dev"}
+{"id":"SAMPLE-Q060","question":"In the chart of Eastern Bank: Quarterly Results, which category has the highest value?","modality":"image","answer":"Net NPA","doc_id":"D168","page":4,"split":"test"}
